@@ -155,6 +155,7 @@ plotHistogram <- function(x) {
 #'
 #' @examples
 plotPoints <- function(x, selection = NULL, groupCol = "group", cpm = FALSE, prior.count = 2, log = TRUE) {
+  y <- x
   if (cpm) {
     y <- edgeR::cpm(x, prior.count = prior.count, log = log)
   } else {
