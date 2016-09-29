@@ -76,11 +76,13 @@ plotVoom <- function(x) {
 #'
 #' @examples
 plotResult <- function(x) {
-  x <- as.matrix(x)
-  mode(x) <- "integer"
-  x <- x[order(x[,1], x[,2], x[,3]),]
+  x <- unclass(x) # For TestResult objects. Make this more general.
+
+  x <- x[do.call(order, as.list(as.data.frame(x))),] # to sort by each column sequentially.
+
   x <- reshape2::melt(x, varnames = c("protein", "coeficient"))
-  x[,3] <- as.factor(x[,3])
+  x$value <- factor(x$value)
+
   ggplot(x, aes_string(x="coeficient", y = "protein", fill = "value")) +
     geom_raster() +
     theme(axis.text.y = element_blank(), axis.ticks.y = element_blank(), aspect.ratio = 1) +
