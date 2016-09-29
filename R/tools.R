@@ -59,9 +59,9 @@ getEnrichmentResults <- function(..., what = "P.Up", use.name = FALSE) {
 #'
 #' @examples
 imputeGroup <- function(x, group = NULL, do.mar = TRUE, do.mnar = TRUE, mnar.default = 0, method = "mle", ...) {
-  s <- split(x, rep(group, each = nrow(m)))
+  s <- split(x, rep(group, each = nrow(x)))
   l <- lapply(s, function(z) {
-    tmp <- matrix(z, nrow = nrow(m), byrow = FALSE)
+    tmp <- matrix(z, nrow = nrow(x), byrow = FALSE)
 
     sel.mnar <- rowSums(is.na(tmp)) == ncol(tmp)
 
@@ -84,6 +84,7 @@ imputeGroup <- function(x, group = NULL, do.mar = TRUE, do.mnar = TRUE, mnar.def
     }
     tmp
   })
+
   m <- do.call(cbind, l)
   rownames(m) <- rownames(x)
   colnames(m) <- colnames(x)
