@@ -239,13 +239,19 @@ plotEnrichment <- function(..., cutoff = 0.05, what = "P.Up", use.name = TRUE) {
 plotVenn <- function(x, ...) {
   m2l <- function(x) {
     l <- lapply(seq_len(ncol(x)), function(i) {
-      rownames(x)[x[,i]]
+      if (is.null(rownames(x)))
+        (1:nrow(x))[x[,i]]
+      else
+        rownames(x)[x[,i]]
     })
-    names(l) <- colnames(x)
+    if (is.null(colnames(x)))
+      names(l) <- paste0("group-", 1:length(l))
+    else
+      names(l) <- colnames(x)
     l
   }
   grid::grid.newpage()
-  VennDiagram::venn.diagram(m2l(x), filename = NULL, fontfamily = "sans", cat.fontfamily = "sans", main.fontfamily = "sans", ...) %>% grid::grid.draw
+  grid::grid.draw(VennDiagram::venn.diagram(m2l(x), filename = NULL, fontfamily = "sans", cat.fontfamily = "sans", main.fontfamily = "sans", ...))
 }
 
 
