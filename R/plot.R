@@ -152,7 +152,7 @@ plotHistogram <- function(x) {
 #' @export
 #'
 #' @examples
-plotPoints <- function(x, selection = NULL, groupCol = "group", cpm = TRUE, prior.count = 2, log = TRUE) {
+plotPoints <- function(x, selection = NULL, groupCol = "group", cpm = FALSE, prior.count = 2, log = TRUE) {
   if (cpm) {
     y <- edgeR::cpm(x, prior.count = prior.count, log = log)
   } else {
@@ -250,6 +250,7 @@ plotVenn <- function(x, ...) {
       names(l) <- colnames(x)
     l
   }
+  futile.logger::flog.threshold(futile.logger::ERROR, name = "VennDiagramLogger")
   grid::grid.newpage()
   grid::grid.draw(VennDiagram::venn.diagram(m2l(x), filename = NULL, fontfamily = "sans", cat.fontfamily = "sans", main.fontfamily = "sans", ...))
 }
