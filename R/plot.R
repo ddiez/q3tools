@@ -154,8 +154,7 @@ plotHistogram <- function(x) {
 #' @export
 #'
 #' @examples
-plotPoints <- function(x, selection = NULL, groupCol = "group", cpm = FALSE, prior.count = 2, log = TRUE) {
-  y <- x
+plotPoints <- function(x, selection = NULL, group = NULL, groupCol = "group", cpm = FALSE, prior.count = 2, log = TRUE) {
   if (cpm) {
     y <- edgeR::cpm(x, prior.count = prior.count, log = log)
   } else {
@@ -165,6 +164,8 @@ plotPoints <- function(x, selection = NULL, groupCol = "group", cpm = FALSE, pri
       y <- x$E
     if (class(x) == "ExpressionSet")
       y <- exprs(x)
+    if (class(x) == "matrix")
+      y <- x
   }
 
   if (class(x) == "DGEList") {
@@ -183,13 +184,18 @@ plotPoints <- function(x, selection = NULL, groupCol = "group", cpm = FALSE, pri
     names(group) <- sampleNames(x)
   }
 
+  if (class(x) == "matrix") {
+    if (is.null(group)) stop("group must not be NULL for matrix objects.")
+    names(group) <- colnames(x)
+  }
+
   if (!is.null(selection))
     y <- y[selection, , drop = FALSE]
 
   d <- reshape2::melt(y, varnames = c("protein", "sample"))
   d$group <- group[d$sample]
 
-  dd <- d %>% group_by_("protein", "group") %>% summarize_(mean = "mean(value)")
+  dd <- d %>% group_by_("protein", "group") %>% summarize_(mean = "mean(value, na.rm = TRUE)")
 
   d %>% ggplot(aes_string(x = "group", y = "value", color = "group")) +
     geom_jitter(width = .3, size = 1, height = 0) +
