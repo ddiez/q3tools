@@ -198,7 +198,7 @@ plotPoints <- function(x, selection = NULL, group = NULL, groupCol = "group", cp
   dd <- d %>% group_by_("protein", "group") %>% summarize_(mean = "mean(value, na.rm = TRUE)")
 
   d %>% ggplot(aes_string(x = "group", y = "value", color = "group")) +
-    geom_jitter(width = .3, size = 1, height = 0) +
+    geom_jitter(width = .5, size = 1, height = 0) +
     facet_wrap(~protein) +
     guides(color = guide_legend(title = "group")) +
     geom_hline(aes_string(yintercept = "mean", color = "group"), data = dd)
