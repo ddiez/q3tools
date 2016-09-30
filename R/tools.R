@@ -58,36 +58,36 @@ getEnrichmentResults <- function(..., what = "P.Up", use.name = FALSE) {
 #' @export
 #'
 #' @examples
-imputeGroup <- function(x, group = NULL, do.mar = TRUE, do.mnar = TRUE, mnar.default = 0, method = "mle", ...) {
+imputeGroup <- function(x, group = NULL, do.mar = TRUE, do.mnar = TRUE, mnar.default = 0, method = "knn", ...) {
   s <- split(x, rep(group, each = nrow(x)))
   l <- lapply(s, function(z) {
     tmp <- matrix(z, nrow = nrow(x), byrow = FALSE)
 
     sel.mnar <- rowSums(is.na(tmp)) == ncol(tmp)
-
     if (do.mnar)
-      tmp[sel.mnar, , drop = FALSE] <- mnar.default
-
-    if (do.mar) {
-      switch(method,
-             mle = {
-               # MLE
-               s <- norm::prelim.norm(tmp[!sel.mnar, , drop = FALSE])
-               th <- norm::em.norm(s, ...)
-               tmp[!sel.mnar, , drop = FALSE] <- norm::imp.norm(s, th, tmp[!sel.mnar, , drop = FALSE])
-             },
-             nkk = {
-               # KNN
-               tmp[!sel.mnar, , drop = FALSE] <- impute::impute.knn(tmp[!sel.mnar, , drop = FALSE], ...)$data
-             }
-      )
-    }
+      if (any(sel.mnar))
+        tmp[sel.mnar, ] <- mnar.default
     tmp
   })
 
   m <- do.call(cbind, l)
   rownames(m) <- rownames(x)
   colnames(m) <- colnames(x)
+
+  if (do.mar) {
+    switch(method,
+           mle = {
+             # MLE
+             s <- norm::prelim.norm(m)
+             th <- norm::em.norm(s, ...)
+             m <- norm::imp.norm(s, th, m)
+           },
+           knn = {
+             # KNN
+             m <- impute::impute.knn(data = m, ...)$data
+           }
+    )
+  }
   m
 }
 
