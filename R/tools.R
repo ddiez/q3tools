@@ -66,19 +66,19 @@ imputeGroup <- function(x, group = NULL, do.mar = TRUE, do.mnar = TRUE, mnar.def
     sel.mnar <- rowSums(is.na(tmp)) == ncol(tmp)
 
     if (do.mnar)
-      tmp[sel.mnar,] <- mnar.default
+      tmp[sel.mnar, , drop = FALSE] <- mnar.default
 
     if (do.mar) {
       switch(method,
              mle = {
                # MLE
-               s <- norm::prelim.norm(tmp[!sel.mnar,])
+               s <- norm::prelim.norm(tmp[!sel.mnar, , drop = FALSE])
                th <- norm::em.norm(s, ...)
-               tmp[!sel.mnar,] <- norm::imp.norm(s, th, tmp[!sel.mnar,])
+               tmp[!sel.mnar, , drop = FALSE] <- norm::imp.norm(s, th, tmp[!sel.mnar, , drop = FALSE])
              },
              nkk = {
                # KNN
-               tmp[!sel.mnar,] <- impute::impute.knn(tmp[!sel.mnar,], ...)$data
+               tmp[!sel.mnar, , drop = FALSE] <- impute::impute.knn(tmp[!sel.mnar, , drop = FALSE], ...)$data
              }
       )
     }
