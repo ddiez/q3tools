@@ -59,36 +59,36 @@ getEnrichmentResults <- function(..., what = "P.Up", use.name = FALSE) {
 #'
 #' @examples
 imputeGroup <- function(x, group = NULL, do.mar = TRUE, do.mnar = TRUE, mnar.default = 0, method = "knn", ...) {
-  s <- split(x, rep(group, each = nrow(x)))
-  l <- lapply(s, function(z) {
-    tmp <- matrix(z, nrow = nrow(x), byrow = FALSE)
+  if (do.mnar) {
+    d <- dimnames(x)
+    s <- split(x, rep(group, each = nrow(x)))
+    l <- lapply(s, function(z) {
+      tmp <- matrix(z, nrow = nrow(x), byrow = FALSE)
 
-    sel.mnar <- rowSums(is.na(tmp)) == ncol(tmp)
-    if (do.mnar)
+      sel.mnar <- rowSums(is.na(tmp)) == ncol(tmp)
       if (any(sel.mnar))
         tmp[sel.mnar, ] <- mnar.default
-    tmp
-  })
-
-  m <- do.call(cbind, l)
-  rownames(m) <- rownames(x)
-  colnames(m) <- colnames(x)
+      tmp
+    })
+    x <- do.call(cbind, l)
+    dimnames(x) <- d
+  }
 
   if (do.mar) {
     switch(method,
            mle = {
              # MLE
-             s <- norm::prelim.norm(m)
+             s <- norm::prelim.norm(x)
              th <- norm::em.norm(s, ...)
-             m <- norm::imp.norm(s, th, m)
+             x <- norm::imp.norm(s, th, x)
            },
            knn = {
              # KNN
-             m <- impute::impute.knn(data = m, ...)$data
+             x <- impute::impute.knn(data = x, ...)$data
            }
     )
   }
-  m
+  x
 }
 
 
