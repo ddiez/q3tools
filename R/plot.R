@@ -239,8 +239,8 @@ plotEnrichment <- function(..., cutoff = 0.05, what = "P.Up", use.name = TRUE) {
 #' @import dplyr
 #'
 #' @examples
-plotVenn <- function(x, ...) {
-  m2l <- function(x) {
+plotVenn <- function(x, add.universe = FALSE, ...) {
+  m2l <- function(x, add.universe = FALSE) {
     l <- lapply(seq_len(ncol(x)), function(i) {
       if (is.null(rownames(x)))
         (1:nrow(x))[x[,i]]
@@ -251,11 +251,13 @@ plotVenn <- function(x, ...) {
       names(l) <- paste0("group-", 1:length(l))
     else
       names(l) <- colnames(x)
+    if (add.universe)
+      l$total <- rownames(x)
     l
   }
   futile.logger::flog.threshold(futile.logger::ERROR, name = "VennDiagramLogger")
   grid::grid.newpage()
-  grid::grid.draw(VennDiagram::venn.diagram(m2l(x), filename = NULL, fontfamily = "sans", cat.fontfamily = "sans", main.fontfamily = "sans", ...))
+  grid::grid.draw(VennDiagram::venn.diagram(m2l(x, add.universe = add.universe), filename = NULL, fontfamily = "sans", cat.fontfamily = "sans", main.fontfamily = "sans", ...))
 }
 
 
