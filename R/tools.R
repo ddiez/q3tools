@@ -66,7 +66,7 @@ imputeGroup <- function(x, group = NULL, do.mar = TRUE, do.mnar = TRUE, mnar.def
     sel.mnar <- rowSums(is.na(tmp)) == ncol(tmp)
 
     if (do.mnar)
-      tmp[sel.mnar,] <- 0
+      tmp[sel.mnar,] <- mnar.default
 
     if (do.mar) {
       switch(method,
