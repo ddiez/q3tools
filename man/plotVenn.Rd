@@ -4,10 +4,12 @@
 \alias{plotVenn}
 \title{Plot a venn diagram with VennDiagram package using some nice defaults}
 \usage{
-plotVenn(x, ...)
+plotVenn(x, add.universe = FALSE, ...)
 }
 \arguments{
 \item{x}{matrix of values (similar to what is fed to VennDiagram in limma package).}
+
+\item{add.universe}{logical; whether to add a group containing all elements.}
 
 \item{...}{additional parameters passed down to venn.diagrama()}
 }

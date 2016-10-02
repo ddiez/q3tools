@@ -4,21 +4,25 @@
 \alias{plotPoints}
 \title{Plot jittered points by group.}
 \usage{
-plotPoints(x, selection = NULL, groupCol = "group", cpm = TRUE,
-  prior.count = 2, log = TRUE)
+plotPoints(x, selection = NULL, group = NULL, groupCol = "group",
+  cpm = FALSE, prior.count = 2, log = TRUE, scales = "fixed")
 }
 \arguments{
 \item{x}{an object from which a matrix can be obtained.}
 
 \item{selection}{character or numeric vector with a selection to plot.}
 
-\item{groupCol}{grouping variable.}
+\item{group}{character vector with grouping variable.}
+
+\item{groupCol}{grouping variable name (to obtain group from x).}
 
 \item{cpm}{whether to compute cpm().}
 
-\item{prior.count}{argument for cpm()}
+\item{prior.count}{argument for cpm().}
 
-\item{log}{argument for cpm()}
+\item{log}{argument for cpm().}
+
+\item{scales}{argument passed to facet_wrap().}
 }
 \description{
 Plot jittered points by group.

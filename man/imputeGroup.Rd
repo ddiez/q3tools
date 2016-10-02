@@ -5,7 +5,7 @@
 \title{Group-wise missing value imputation}
 \usage{
 imputeGroup(x, group = NULL, do.mar = TRUE, do.mnar = TRUE,
-  mnar.default = 0, method = "mle", ...)
+  mnar.default = 0, method = "knn", ...)
 }
 \arguments{
 \item{x}{matrix with missing values to impute.}

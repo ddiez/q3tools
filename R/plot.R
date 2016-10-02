@@ -145,7 +145,8 @@ plotHistogram <- function(x) {
 #'
 #' @param x an object from which a matrix can be obtained.
 #' @param selection character or numeric vector with a selection to plot.
-#' @param groupCol grouping variable.
+#' @param group character vector with grouping variable.
+#' @param groupCol grouping variable name (to obtain group from x).
 #' @param cpm whether to compute cpm().
 #' @param prior.count argument for cpm().
 #' @param log argument for cpm().
@@ -239,11 +240,13 @@ plotEnrichment <- function(..., cutoff = 0.05, what = "P.Up", use.name = TRUE) {
 #'
 #' @param x matrix of values (similar to what is fed to VennDiagram in limma package).
 #' @param ... additional parameters passed down to venn.diagrama()
+#' @param add.universe logical; whether to add a group containing all elements.
 #'
 #' @return
 #' @export
 #'
 #' @import dplyr
+#' @importFrom futile.logger flog.threshold
 #'
 #' @examples
 plotVenn <- function(x, add.universe = FALSE, ...) {
@@ -262,7 +265,7 @@ plotVenn <- function(x, add.universe = FALSE, ...) {
       l$total <- rownames(x)
     l
   }
-  futile.logger::flog.threshold(futile.logger::ERROR, name = "VennDiagramLogger")
+  flog.threshold(futile.logger::ERROR, name = "VennDiagramLogger")
   grid::grid.newpage()
   grid::grid.draw(VennDiagram::venn.diagram(m2l(x, add.universe = add.universe), filename = NULL, fontfamily = "sans", cat.fontfamily = "sans", main.fontfamily = "sans", ...))
 }
