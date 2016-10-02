@@ -147,14 +147,15 @@ plotHistogram <- function(x) {
 #' @param selection character or numeric vector with a selection to plot.
 #' @param groupCol grouping variable.
 #' @param cpm whether to compute cpm().
-#' @param prior.count argument for cpm()
-#' @param log argument for cpm()
+#' @param prior.count argument for cpm().
+#' @param log argument for cpm().
+#' @param scales argument passed to facet_wrap().
 #'
 #' @return
 #' @export
 #'
 #' @examples
-plotPoints <- function(x, selection = NULL, group = NULL, groupCol = "group", cpm = FALSE, prior.count = 2, log = TRUE) {
+plotPoints <- function(x, selection = NULL, group = NULL, groupCol = "group", cpm = FALSE, prior.count = 2, log = TRUE, scales = "fixed") {
   if (cpm) {
     y <- edgeR::cpm(x, prior.count = prior.count, log = log)
   } else {
@@ -199,7 +200,7 @@ plotPoints <- function(x, selection = NULL, group = NULL, groupCol = "group", cp
 
   d %>% ggplot(aes_string(x = "group", y = "value", color = "group")) +
     geom_jitter(width = .5, size = 1, height = 0) +
-    facet_wrap(~protein) +
+    facet_wrap(~protein, scales = scales) +
     guides(color = guide_legend(title = "group")) +
     geom_hline(aes_string(yintercept = "mean", color = "group"), data = dd)
 }
