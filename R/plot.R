@@ -170,17 +170,17 @@ plotPoints <- function(x, selection = NULL, group = NULL, groupCol = "group", cp
       y <- x
   }
 
-  if (class(x) == "DGEList") {
+  if (class(x) == "DGEList" && is.null(group)) {
     group <- x$samples[[groupCol]]
     names(group) <- rownames(x$samples)
   }
 
-  if (class(x) == "EList") {
+  if (class(x) == "EList" && is.null(group)) {
     group <- x$targets[[groupCol]]
     names(group) <- rownames(x$targets)
   }
 
-  if (class(x) == "ExpressionSet") {
+  if (class(x) == "ExpressionSet" && is.null(group)) {
     s <- sampleNames(x)
     group <- x[[groupCol]]
     names(group) <- sampleNames(x)
