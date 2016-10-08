@@ -110,3 +110,21 @@ getMDS <- function(...){
   unlink(ff)
   res
 }
+
+
+#' Custom implementation of reshape2 melt to avoid importing reshape2
+#'
+#' @param x matrix to melt.
+#' @param rows.name name of column containing rownames.
+#' @param cols.name name of column containing colnames.
+#' @param value.name name of column containing values.
+#'
+#' @return a melted data.frame.
+#' @export
+#'
+#' @examples
+melt <- function(x, rows.name = "rowname", cols.name = "colname", value.name = "value") {
+  x <- x %>% as.data.frame
+  cols <- colnames(x)
+  x %>% rownames_to_column(rows.name) %>% gather_(cols.name, value.name, cols)
+}

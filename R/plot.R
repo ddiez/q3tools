@@ -10,12 +10,15 @@
 #'
 #' @return This function returns no value but has the side effect of producing a plot.
 #' @export
-#' @import ggplot2 Biobase edgeR stats
+#' @import ggplot2 dplyr tidyr tibble
+#' @importFrom edgeR cpm
+#' @importFrom Biobase exprs pData fData sampleNames
+#' @importFrom stats as.dist cor hclust
 #'
 #' @examples
 plotExpression <- function(x, cluster = TRUE, scale = FALSE, cpm = FALSE, prior.count = 2, log = TRUE) {
   if (class(x) == "DGEList")
-    x <- edgeR::cpm(x, prior.count = prior.count, log = log)
+    x <- cpm(x, prior.count = prior.count, log = log)
 
   if (class(x) == "EList")
     x <- x$E
@@ -25,7 +28,7 @@ plotExpression <- function(x, cluster = TRUE, scale = FALSE, cpm = FALSE, prior.
 
   # Is this needed? I had two implementations, the one with this didn't have the call to cpm above for DGEList... Rethink.
   if (cpm)
-    x <- edgeR::cpm(x, prior.count = prior.count, log = log)
+    x <- cpm(x, prior.count = prior.count, log = log)
 
   if (cluster) {
     h <- hclust(as.dist(1 - cor(t(x))))
@@ -35,7 +38,7 @@ plotExpression <- function(x, cluster = TRUE, scale = FALSE, cpm = FALSE, prior.
   if (scale)
     x <- t(scale(t(x)))
 
-  d <- reshape2::melt(x, varnames = c("protein", "sample"))
+  d <- melt(x, rows.name = "protein", cols.name = "sample")
 
   ggplot(d, aes_string(x = "sample", y = "protein", fill = "value")) +
     geom_raster() +
@@ -80,7 +83,7 @@ plotResult <- function(x) {
 
   x <- x[do.call(order, as.list(as.data.frame(x))),] # to sort by each column sequentially.
 
-  x <- reshape2::melt(x, varnames = c("protein", "coeficient"))
+  x <- melt(x, rows.name = "protein", cols.name = "coeficient")
   x$value <- factor(x$value)
 
   ggplot(x, aes_string(x="coeficient", y = "protein", fill = "value")) +
@@ -101,7 +104,7 @@ plotResult <- function(x) {
 #'
 #' @examples
 plotPvalue <- function(x) {
-  d <- reshape2::melt(x$p.value, varnames = c("protein", "coefficient"))
+  d <- melt(x$p.value, rows.name = "protein", cols.name = "coefficient")
   ggplot(d, aes_string(x = "value")) + geom_histogram(bins = 25) + facet_wrap(~coefficient) + labs(title = "Distribution of p-value") + theme(aspect.ratio = 1)
 }
 
@@ -134,7 +137,7 @@ plotHistogram <- function(x) {
     names(group) <- sampleNames(x)
   }
 
-  d <- reshape2::melt(y, varnames = c("protein", "sample"))
+  d <- melt(y, rows.name = "protein", cols.name = "sample")
   d$group <- group[d$sample]
   ggplot(d, aes_string(x = "value")) + geom_histogram(bins = 25) + facet_wrap(~group) + theme(aspect.ratio = 1)
 }
@@ -194,7 +197,7 @@ plotPoints <- function(x, selection = NULL, group = NULL, groupCol = "group", cp
   if (!is.null(selection))
     y <- y[selection, , drop = FALSE]
 
-  d <- reshape2::melt(y, varnames = c("protein", "sample"))
+  d <- melt(y, rows.name = "protein", cols.name = "sample")
   d$group <- group[d$sample]
 
   dd <- d %>% group_by_("protein", "group") %>% summarize_(mean = "mean(value, na.rm = TRUE)")
@@ -225,7 +228,7 @@ plotEnrichment <- function(..., cutoff = 0.05, what = "P.Up", use.name = TRUE) {
   h <- hclust(as.dist(1 - cor(t(k))))
   k <- k[h$order, ]
 
-  d <- k %>% reshape2::melt(varnames = c("term", "group"), value.name = "p.value")
+  d <- k %>% melt(rows.name = "term", cols.name = "group", value.name = "p.value")
 
   ggplot(d, aes_string(x = "group", y = "term", fill = "-log10(p.value)")) +
     geom_raster() + viridis::scale_fill_viridis(guide = "legend") +
@@ -245,7 +248,6 @@ plotEnrichment <- function(..., cutoff = 0.05, what = "P.Up", use.name = TRUE) {
 #' @return
 #' @export
 #'
-#' @import dplyr
 #' @importFrom futile.logger flog.threshold
 #'
 #' @examples
@@ -325,7 +327,7 @@ plotCorrelation <- function(x, title = "Sample correlation", cluster = FALSE) {
     m <- m[h$order, h$order]
   }
 
-  d <- reshape2::melt(m, varnames = c("sample_i", "sample_j"), value.name = "correlation")
+  d <- melt(m, rows.name = "sample_i", cols.name = "sample_j", value.name = "correlation")
 
   ggplot(d, aes_string(x = "sample_i", y = "sample_j", fill = "correlation")) +
     geom_tile() +
