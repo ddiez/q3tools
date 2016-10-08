@@ -335,3 +335,35 @@ plotCorrelation <- function(x, title = "Sample correlation", cluster = FALSE) {
     viridis::scale_fill_viridis(limits = c(0, 1), guide = guide_legend(reverse = TRUE)) +
     theme(aspect.ratio = 1, axis.ticks = element_blank(), axis.text.x = element_text(angle = 90, hjust = 1, vjust = .5))
 }
+
+#' Basic gene ploting function
+#'
+#' @param symbol symbol of the gene to plot. Will be used to search using BiomartGeneRegionTrack
+#' @param genome genome assembly (e.g. mm10 or hg38)
+#' @param ... further arguments passed to plotTracks
+#'
+#' @return nothing but produces a plot as side effect.
+#' @export
+#'
+#' @import Gviz
+#'
+#' @examples
+plotGene <- function(symbol, genome, ...) {
+  itrack <- IdeogramTrack(genome = genome)
+  atrack <- GenomeAxisTrack(add35 = TRUE, add53 = TRUE)
+  bmtrack <- BiomartGeneRegionTrack(symbol = symbol, genome = genome, name = "EnsEMBL",
+                                    geneSymbols = TRUE,
+                                    showTranscriptID = TRUE,
+                                    col.line = NULL,
+                                    col = NULL,
+                                    col.title = "black",
+                                    background.title = "grey90")
+
+  tl <- list(
+    itrack,
+    atrack,
+    bmtrack
+  )
+  plotTracks(tl, chromosome = chromosome(bmtrack), ...)
+}
+

@@ -8,7 +8,23 @@ Description: These package contains some plotting tools at the moment. They help
     make my life easier when analyzing omics data. But they are not neccesarily the
     best way to do things. Indeed, I expect them to contain many errors, bad choices
     and limitations. You have been warned.
-Imports: ggplot2, Biobase, dplyr, tidyr, tibble, SummarizedExperiment, limma, edgeR, viridis, stats, norm, impute, grid, VennDiagram, futile.logger
+Imports:
+  Biobase,
+  Gviz,
+  SummarizedExperiment,
+  limma, 
+  edgeR,
+  ggplot2, 
+  dplyr,
+  tidyr,
+  tibble,
+  viridis,
+  stats,
+  norm,
+  impute,
+  grid,
+  VennDiagram,
+  futile.logger
 Suggests: testthat
 License: MIT
 Encoding: UTF-8
