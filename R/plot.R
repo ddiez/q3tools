@@ -362,7 +362,7 @@ plotGene <- function(symbol, genome, add.ideogram = FALSE, ...) {
                                     col.line = NULL,
                                     col = NULL,
                                     col.title = "black",
-                                    background.title = "grey90")
+                                    background.title = "white")
 
   tl <- c(
     itrack,
