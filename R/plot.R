@@ -349,7 +349,7 @@ plotCorrelation <- function(x, title = "Sample correlation", cluster = FALSE) {
 #' @import Gviz
 #'
 #' @examples
-plotGene <- function(symbol, genome, add.ideogram = FALSE, ...) {
+plotGene <- function(symbol, genome, add.ideogram = FALSE, add.data = NULL, ...) {
   itrack <- NULL
   if (add.ideogram)
     itrack <- IdeogramTrack(genome = genome)
@@ -364,10 +364,32 @@ plotGene <- function(symbol, genome, add.ideogram = FALSE, ...) {
                                     col.title = "black",
                                     background.title = "white")
 
+  dtrack <- NULL
+  if (!is.null(add.data)) {
+
+    if (!is.list(add.data))
+      add.data <- list(add.data)
+
+    if (is.null(names(add.data)))
+      names(add.data) <- paste0("DataTrack-", seq_len(length(add.data)))
+
+    dtrack <- lapply(names(add.data), function(n) {
+      x <- add.data[[n]]
+      DataTrack(x,
+                name = n,
+                type = "histogram",
+                col.histogram = "cornflowerblue",
+                fill.histogram = "cornflowerblue",
+                col.title = "black",
+                background.title = "white")
+    })
+  }
+
   tl <- c(
     itrack,
     atrack,
-    bmtrack
+    bmtrack,
+    dtrack
   )
   plotTracks(tl, chromosome = chromosome(bmtrack), ...)
 }
