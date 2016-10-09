@@ -340,6 +340,7 @@ plotCorrelation <- function(x, title = "Sample correlation", cluster = FALSE) {
 #'
 #' @param symbol symbol of the gene to plot. Will be used to search using BiomartGeneRegionTrack
 #' @param genome genome assembly (e.g. mm10 or hg38)
+#' @param add.ideogram whether to add an IdeogramTrack (FALSE by default to spead up testing)
 #' @param ... further arguments passed to plotTracks
 #'
 #' @return nothing but produces a plot as side effect.
@@ -348,10 +349,14 @@ plotCorrelation <- function(x, title = "Sample correlation", cluster = FALSE) {
 #' @import Gviz
 #'
 #' @examples
-plotGene <- function(symbol, genome, ...) {
-  itrack <- IdeogramTrack(genome = genome)
+plotGene <- function(symbol, genome, add.ideogram = FALSE, ...) {
+  itrack <- NULL
+  if (add.ideogram)
+    itrack <- IdeogramTrack(genome = genome)
   atrack <- GenomeAxisTrack(add35 = TRUE, add53 = TRUE)
-  bmtrack <- BiomartGeneRegionTrack(symbol = symbol, genome = genome, name = "EnsEMBL",
+  bmtrack <- BiomartGeneRegionTrack(symbol = symbol,
+                                    genome = genome,
+                                    name = "EnsEMBL",
                                     geneSymbols = TRUE,
                                     showTranscriptID = TRUE,
                                     col.line = NULL,
@@ -359,7 +364,7 @@ plotGene <- function(symbol, genome, ...) {
                                     col.title = "black",
                                     background.title = "grey90")
 
-  tl <- list(
+  tl <- c(
     itrack,
     atrack,
     bmtrack

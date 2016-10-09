@@ -4,12 +4,14 @@
 \alias{plotGene}
 \title{Basic gene ploting function}
 \usage{
-plotGene(symbol, genome, ...)
+plotGene(symbol, genome, add.ideogram = FALSE, ...)
 }
 \arguments{
 \item{symbol}{symbol of the gene to plot. Will be used to search using BiomartGeneRegionTrack}
 
 \item{genome}{genome assembly (e.g. mm10 or hg38)}
+
+\item{add.ideogram}{whether to add an IdeogramTrack (FALSE by default to spead up testing)}
 
 \item{...}{further arguments passed to plotTracks}
 }
