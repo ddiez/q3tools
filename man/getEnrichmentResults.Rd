@@ -5,7 +5,7 @@
 \title{Create a matrix with several objects resulting from enrichment analysis with kegga() and goana()}
 \usage{
 getEnrichmentResults(..., what = "P.Up", ontology = "BP",
-  use.name = FALSE, short.names = FALSE)
+  use.name = FALSE, short.names = FALSE, minlength = 40)
 }
 \arguments{
 \item{...}{results from enrichment}
@@ -17,6 +17,8 @@ getEnrichmentResults(..., what = "P.Up", ontology = "BP",
 \item{use.name}{logical; whether to return the term's name or the ids.}
 
 \item{short.names}{whether to use abbreviate() to shorten rownames (handy for long GO descriptions).}
+
+\item{minlength}{minimum length for abbreviate().}
 }
 \description{
 Create a matrix with several objects resulting from enrichment analysis with kegga() and goana()

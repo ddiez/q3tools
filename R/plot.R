@@ -218,13 +218,14 @@ plotPoints <- function(x, selection = NULL, group = NULL, groupCol = "group", cp
 #' @param ontology for GO results what ontology to use (default BP).
 #' @param use.name logical; whether to return the term's name or the ids.  Passed down to getEnrichmentResults()
 #' @param short.names whether to use abbreviate() to shorten rownames (handy for long GO descriptions).
+#' @param minlength minimum length for abbreviate().
 #'
 #' @return
 #' @export
 #'
 #' @examples
-plotEnrichment <- function(..., cutoff = 0.05, what = "P.Up", ontology = "BP", use.name = TRUE, short.names = FALSE) {
-  k <- getEnrichmentResults(..., what = what, ontology = ontology, use.name = use.name, short.names = short.names)
+plotEnrichment <- function(..., cutoff = 0.05, what = "P.Up", ontology = "BP", use.name = TRUE, short.names = FALSE, minlength = 40) {
+  k <- getEnrichmentResults(..., what = what, ontology = ontology, use.name = use.name, short.names = short.names, minlength = minlength)
   k <- k[rowSums(k < cutoff) > 0,]
 
   h <- hclust(as.dist(1 - cor(t(k))))

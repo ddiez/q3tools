@@ -5,7 +5,7 @@
 \title{Plot a heatmap with the significance of terms from enrichment results.}
 \usage{
 plotEnrichment(..., cutoff = 0.05, what = "P.Up", ontology = "BP",
-  use.name = TRUE, short.names = FALSE)
+  use.name = TRUE, short.names = FALSE, minlength = 40)
 }
 \arguments{
 \item{...}{results from enrichment, passed down to getEnrichmentResults()}
@@ -19,6 +19,8 @@ plotEnrichment(..., cutoff = 0.05, what = "P.Up", ontology = "BP",
 \item{use.name}{logical; whether to return the term's name or the ids.  Passed down to getEnrichmentResults()}
 
 \item{short.names}{whether to use abbreviate() to shorten rownames (handy for long GO descriptions).}
+
+\item{minlength}{minimum length for abbreviate().}
 }
 \description{
 Plot a heatmap with the significance of terms from enrichment results.

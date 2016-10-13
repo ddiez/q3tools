@@ -5,12 +5,13 @@
 #' @param ontology for GO results what ontology to use (default BP).
 #' @param use.name logical; whether to return the term's name or the ids.
 #' @param short.names whether to use abbreviate() to shorten rownames (handy for long GO descriptions).
+#' @param minlength minimum length for abbreviate().
 #'
 #' @return
 #' @export
 #'
 #' @examples
-getEnrichmentResults <- function(..., what = "P.Up", ontology = "BP", use.name = FALSE, short.names = FALSE) {
+getEnrichmentResults <- function(..., what = "P.Up", ontology = "BP", use.name = FALSE, short.names = FALSE, minlength = 40) {
   l <- list(...)
 
   # this assumes all the objects passed are homogeneous (i.e. all GO or all KEGG)
@@ -25,7 +26,7 @@ getEnrichmentResults <- function(..., what = "P.Up", ontology = "BP", use.name =
   else
     rownames(x) <- rownames(l[[1]])
   if (short.names)
-    rownames(x) <- abbreviate(rownames(x), minlength = 30)
+    rownames(x) <- abbreviate(rownames(x), minlength = minlength)
   colnames(x) <- names(l)
   for(i in seq_len(length(l))) {
     tmp <- l[[i]]
