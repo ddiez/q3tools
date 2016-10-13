@@ -14,7 +14,7 @@ getEnrichmentResults <- function(..., what = "P.Up", ontology = "BP", use.name =
   l <- list(...)
 
   # this assumes all the objects passed are homogeneous (i.e. all GO or all KEGG)
-  if ("Ont" %in% l[[1]]) {
+  if ("Ont" %in% colnames(l[[1]])) {
     l <- lapply(l, function(ll) {
       ll %>% filter(Ont == ontology)
     })
