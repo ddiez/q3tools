@@ -11,6 +11,13 @@
 #' @examples
 getEnrichmentResults <- function(..., what = "P.Up", ontology = "BP", use.name = FALSE) {
   l <- list(...)
+
+  # this assumes all the objects passed are homogeneous (i.e. all GO or all KEGG)
+  if ("Ont" %in% l[[1]]) {
+    l <- lapply(l, function(ll) {
+      ll %>% filter(Ont == ontology)
+    })
+  }
   x <- matrix(NA, ncol = length(l), nrow = nrow(l[[1]]))
   if (use.name)
     rownames(x) <- l[[1]][,1]
@@ -19,8 +26,8 @@ getEnrichmentResults <- function(..., what = "P.Up", ontology = "BP", use.name =
   colnames(x) <- names(l)
   for(i in seq_len(length(l))) {
     tmp <- l[[i]]
-    if ("Ont" %in% colnames(tmp))
-      tmp <- tmp %>% filter(Ont == ontology)
+    #if ("Ont" %in% colnames(tmp))
+    #  tmp <- tmp %>% filter(Ont == ontology)
     x[, i] <- tmp[, what]
   }
   x
