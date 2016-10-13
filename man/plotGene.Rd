@@ -4,7 +4,7 @@
 \alias{plotGene}
 \title{Basic gene ploting function}
 \usage{
-plotGene(symbol, genome, add.ideogram = FALSE, ...)
+plotGene(symbol, genome, add.ideogram = FALSE, add.data = NULL, ...)
 }
 \arguments{
 \item{symbol}{symbol of the gene to plot. Will be used to search using BiomartGeneRegionTrack}

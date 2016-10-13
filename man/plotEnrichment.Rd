@@ -4,7 +4,8 @@
 \alias{plotEnrichment}
 \title{Plot a heatmap with the significance of terms from enrichment results.}
 \usage{
-plotEnrichment(..., cutoff = 0.05, what = "P.Up", use.name = TRUE)
+plotEnrichment(..., cutoff = 0.05, what = "P.Up", ontology = "BP",
+  use.name = TRUE)
 }
 \arguments{
 \item{...}{results from enrichment, passed down to getEnrichmentResults()}
@@ -12,6 +13,8 @@ plotEnrichment(..., cutoff = 0.05, what = "P.Up", use.name = TRUE)
 \item{cutoff}{p.value cutoff used to filter results.}
 
 \item{what}{what to plot: P.Up (default) or P.Down. Passed down to getEnrichmentResults()}
+
+\item{ontology}{for GO results what ontology to use (default BP).}
 
 \item{use.name}{logical; whether to return the term's name or the ids.  Passed down to getEnrichmentResults()}
 }

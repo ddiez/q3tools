@@ -4,12 +4,15 @@
 \alias{getEnrichmentResults}
 \title{Create a matrix with several objects resulting from enrichment analysis with kegga() and goana()}
 \usage{
-getEnrichmentResults(..., what = "P.Up", use.name = FALSE)
+getEnrichmentResults(..., what = "P.Up", ontology = "BP",
+  use.name = FALSE)
 }
 \arguments{
 \item{...}{results from enrichment}
 
 \item{what}{what to plot: P.Up (default) or P.Down.}
+
+\item{ontology}{for GO results what ontology to use (default BP).}
 
 \item{use.name}{logical; whether to return the term's name or the ids.}
 }
