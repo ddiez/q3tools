@@ -15,6 +15,8 @@ getEnrichmentResults(..., what = "P.Up", ontology = "BP",
 \item{ontology}{for GO results what ontology to use (default BP).}
 
 \item{use.name}{logical; whether to return the term's name or the ids.}
+
+\item{short.names}{whether to use abbreviate() to shorten rownames (handy for long GO descriptions).}
 }
 \description{
 Create a matrix with several objects resulting from enrichment analysis with kegga() and goana()

@@ -4,6 +4,7 @@
 #' @param what what to plot: P.Up (default) or P.Down.
 #' @param ontology for GO results what ontology to use (default BP).
 #' @param use.name logical; whether to return the term's name or the ids.
+#' @param short.names whether to use abbreviate() to shorten rownames (handy for long GO descriptions).
 #'
 #' @return
 #' @export
