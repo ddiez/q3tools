@@ -5,7 +5,7 @@
 \title{Create a matrix with several objects resulting from enrichment analysis with kegga() and goana()}
 \usage{
 getEnrichmentResults(..., what = "P.Up", ontology = "BP",
-  use.name = FALSE)
+  use.name = FALSE, short.names = FALSE)
 }
 \arguments{
 \item{...}{results from enrichment}

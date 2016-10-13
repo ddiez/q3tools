@@ -9,7 +9,7 @@
 #' @export
 #'
 #' @examples
-getEnrichmentResults <- function(..., what = "P.Up", ontology = "BP", use.name = FALSE) {
+getEnrichmentResults <- function(..., what = "P.Up", ontology = "BP", use.name = FALSE, short.names = FALSE) {
   l <- list(...)
 
   # this assumes all the objects passed are homogeneous (i.e. all GO or all KEGG)
@@ -23,11 +23,11 @@ getEnrichmentResults <- function(..., what = "P.Up", ontology = "BP", use.name =
     rownames(x) <- l[[1]][,1]
   else
     rownames(x) <- rownames(l[[1]])
+  if (short.names)
+    rownames(x) <- abbreviate(rownames(x), minlength = 30)
   colnames(x) <- names(l)
   for(i in seq_len(length(l))) {
     tmp <- l[[i]]
-    #if ("Ont" %in% colnames(tmp))
-    #  tmp <- tmp %>% filter(Ont == ontology)
     x[, i] <- tmp[, what]
   }
   x
