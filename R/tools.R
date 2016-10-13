@@ -1,25 +1,5 @@
 #' Create a matrix with several objects resulting from enrichment analysis with kegga() and goana()
 #'
-#' @param ... results from enrichment.
-#' @param what what to plot: P.Up (default) or P.Down.
-#'
-#' @return
-#' @export
-#'
-#' @examples
-getKEGGResults <- function(..., what = "P.Up") {
-  l <- list(...)
-  x <- matrix(NA, ncol = length(l), nrow = nrow(l[[1]]))
-  rownames(x) <- rownames(l[[1]])
-  colnames(x) <- names(l)
-  for(i in seq_len(length(l))) {
-    x[, i] <- l[[i]][, what]
-  }
-  x
-}
-
-#' Create a matrix with several objects resulting from enrichment analysis with kegga() and goana()
-#'
 #' @param ... results from enrichment
 #' @param what what to plot: P.Up (default) or P.Down.
 #' @param ontology for GO results what ontology to use (default BP).
