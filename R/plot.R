@@ -215,14 +215,15 @@ plotPoints <- function(x, selection = NULL, group = NULL, groupCol = "group", cp
 #' @param ... results from enrichment, passed down to getEnrichmentResults()
 #' @param cutoff p.value cutoff used to filter results.
 #' @param what what to plot: P.Up (default) or P.Down. Passed down to getEnrichmentResults()
+#' @param ontology for GO results what ontology to use (default BP).
 #' @param use.name logical; whether to return the term's name or the ids.  Passed down to getEnrichmentResults()
 #'
 #' @return
 #' @export
 #'
 #' @examples
-plotEnrichment <- function(..., cutoff = 0.05, what = "P.Up", use.name = TRUE) {
-  k <- getEnrichmentResults(..., what = what, use.name = use.name)
+plotEnrichment <- function(..., cutoff = 0.05, what = "P.Up", ontology = "BP", use.name = TRUE) {
+  k <- getEnrichmentResults(..., what = what, ontology = ontology, use.name = use.name)
   k <- k[rowSums(k < cutoff) > 0,]
 
   h <- hclust(as.dist(1 - cor(t(k))))

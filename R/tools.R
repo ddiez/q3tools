@@ -22,13 +22,14 @@ getKEGGResults <- function(..., what = "P.Up") {
 #'
 #' @param ... results from enrichment
 #' @param what what to plot: P.Up (default) or P.Down.
+#' @param ontology for GO results what ontology to use (default BP).
 #' @param use.name logical; whether to return the term's name or the ids.
 #'
 #' @return
 #' @export
 #'
 #' @examples
-getEnrichmentResults <- function(..., what = "P.Up", use.name = FALSE) {
+getEnrichmentResults <- function(..., what = "P.Up", ontology = "BP", use.name = FALSE) {
   l <- list(...)
   x <- matrix(NA, ncol = length(l), nrow = nrow(l[[1]]))
   if (use.name)
@@ -37,7 +38,10 @@ getEnrichmentResults <- function(..., what = "P.Up", use.name = FALSE) {
     rownames(x) <- rownames(l[[1]])
   colnames(x) <- names(l)
   for(i in seq_len(length(l))) {
-    x[, i] <- l[[i]][, what]
+    tmp <- l[[i]]
+    if ("Ont" %in% colnames(tmp))
+      tmp <- tmp %>% filter(Ont == ontology)
+    x[, i] <- tmp[, what]
   }
   x
 }
