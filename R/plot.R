@@ -84,7 +84,8 @@ plotResult <- function(x) {
 
   x <- x[do.call(order, as.list(as.data.frame(x))),] # to sort by each column sequentially.
 
-  x <- melt(x, rows.name = "protein", cols.name = "coeficient")
+  #x <- melt(x, rows.name = "protein", cols.name = "coeficient")
+  x <- reshape2::melt(x, varnames = c("protein", "coefficient"))
   x$value <- factor(x$value)
 
   ggplot(x, aes_string(x="coeficient", y = "protein", fill = "value")) +
@@ -105,7 +106,8 @@ plotResult <- function(x) {
 #'
 #' @examples
 plotPvalue <- function(x) {
-  d <- melt(x$p.value, rows.name = "protein", cols.name = "coefficient")
+  #d <- melt(x$p.value, rows.name = "protein", cols.name = "coefficient")
+  d <- reshape2::melt(x$p.pvalue, varnames = c("protein", "coefficient"))
   ggplot(d, aes_string(x = "value")) + geom_histogram(bins = 25) + facet_wrap(~coefficient) + labs(title = "Distribution of p-value") + theme(aspect.ratio = 1)
 }
 
@@ -138,7 +140,8 @@ plotHistogram <- function(x) {
     names(group) <- sampleNames(x)
   }
 
-  d <- melt(y, rows.name = "protein", cols.name = "sample")
+  #d <- melt(y, rows.name = "protein", cols.name = "sample")
+  d <- reshape2::melt(y, varnames = c("protein", "sample"))
   d$group <- group[d$sample]
   ggplot(d, aes_string(x = "value")) + geom_histogram(bins = 25) + facet_wrap(~group) + theme(aspect.ratio = 1)
 }
@@ -198,7 +201,8 @@ plotPoints <- function(x, selection = NULL, group = NULL, groupCol = "group", cp
   if (!is.null(selection))
     y <- y[selection, , drop = FALSE]
 
-  d <- melt(y, rows.name = "protein", cols.name = "sample")
+  #d <- melt(y, rows.name = "protein", cols.name = "sample")
+  d <- reshape2::melt(y, varnames = c("protein", "sample"))
   d$group <- group[d$sample]
 
   dd <- d %>% group_by_("protein", "group") %>% summarize_(mean = "mean(value, na.rm = TRUE)")
@@ -233,7 +237,7 @@ plotEnrichment <- function(..., cutoff = 0.05, what = "P.Up", ontology = "BP", u
   k <- k[h$order, ]
 
   #d <- k %>% melt(rows.name = "term", cols.name = "group", value.name = "p.value")
-  d <- melt(k, varnames = c("term", "group"), value.name = "p.value")
+  d <- reshape2::melt(k, varnames = c("term", "group"), value.name = "p.value")
 
   ggplot(d, aes_string(x = "group", y = "term", fill = "-log10(p.value)")) +
     geom_raster() + viridis::scale_fill_viridis(guide = "legend") +

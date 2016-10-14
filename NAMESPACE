@@ -3,7 +3,6 @@
 export(getEnrichmentResults)
 export(getMDS)
 export(imputeGroup)
-export(melt)
 export(plotCorrelation)
 export(plotEnrichment)
 export(plotExpression)
