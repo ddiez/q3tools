@@ -232,7 +232,8 @@ plotEnrichment <- function(..., cutoff = 0.05, what = "P.Up", ontology = "BP", u
   h <- hclust(as.dist(1 - cor(t(k))))
   k <- k[h$order, ]
 
-  d <- k %>% melt(rows.name = "term", cols.name = "group", value.name = "p.value")
+  #d <- k %>% melt(rows.name = "term", cols.name = "group", value.name = "p.value")
+  d <- melt(k, varnames = c("term", "group"), value.name = "p.value")
 
   ggplot(d, aes_string(x = "group", y = "term", fill = "-log10(p.value)")) +
     geom_raster() + viridis::scale_fill_viridis(guide = "legend") +
