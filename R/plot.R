@@ -213,10 +213,10 @@ plotPoints <- function(x, selection = NULL, group = NULL, groupCol = "group", cp
 #' @title Plot jittered points by group from a matrix.
 #' @description This is a simpler alternative to plotPoint() that takes as an argument a matrix.
 #'
-#' @param x
-#' @param group
-#' @param label
-#' @param scales
+#' @param x a matrix or an object that can be coherce to a matrix.
+#' @param group grouping variable (columns).
+#' @param label custom labels (rows).
+#' @param scales scales argument passed down to facet_wrap (default: fixed).
 #'
 #' @return
 #' @export
