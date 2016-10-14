@@ -38,7 +38,8 @@ plotExpression <- function(x, cluster = TRUE, scale = FALSE, cpm = FALSE, prior.
   if (scale)
     x <- t(scale(t(x)))
 
-  d <- melt(x, rows.name = "protein", cols.name = "sample")
+  #d <- melt(x, rows.name = "protein", cols.name = "sample")
+  d <- reshape2::melt(x, varnames = c("protein", "sample"))
 
   ggplot(d, aes_string(x = "sample", y = "protein", fill = "value")) +
     geom_raster() +
@@ -330,7 +331,8 @@ plotCorrelation <- function(x, title = "Sample correlation", cluster = FALSE) {
     m <- m[h$order, h$order]
   }
 
-  d <- melt(m, rows.name = "sample_i", cols.name = "sample_j", value.name = "correlation")
+  #d <- melt(m, rows.name = "sample_i", cols.name = "sample_j", value.name = "correlation")
+  d <- reshape2::melt(m, varnames = c("sample_i", "sample_j"), value.name = "correlation")
 
   ggplot(d, aes_string(x = "sample_i", y = "sample_j", fill = "correlation")) +
     geom_tile() +
