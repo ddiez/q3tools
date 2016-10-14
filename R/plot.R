@@ -210,6 +210,50 @@ plotPoints <- function(x, selection = NULL, group = NULL, groupCol = "group", cp
     geom_hline(aes_string(yintercept = "mean", color = "group"), data = dd)
 }
 
+#' @title Plot jittered points by group from a matrix.
+#' @description This is a simpler alternative to plotPoint() that takes as an argument a matrix.
+#'
+#' @param x
+#' @param group
+#' @param label
+#' @param scales
+#'
+#' @return
+#' @export
+#'
+#' @examples
+plotPoints.matrix <- function(x, group = NULL, label = NULL, scales = "fixed") {
+  x <- as.matrix(x)
+
+  if (is.null(colnames(x)))
+    colnames(x) <- seq_len(1:ncol(x))
+
+  if (is.null(rownames(x)))
+    rownames(x) <- seq_len(1:nrow(x))
+
+  if (!is.null(group))
+    names(group) <- colnames(x) # colnames can be NULL!
+
+  if (is.null(label)) {
+    label <- rownames(x)
+    names(label) <- rownames(x)
+  } else {
+    names(label) <- rownames(x)
+  }
+
+  d <- melt(x, varnames = c("gene", "sample"))
+  d$gene <- factor(d$gene, levels = rownames(x))
+  d$group <- group[as.character(d$sample)]
+
+  dd <- d %>% group_by_("gene", "group") %>% summarize_(mean = "mean(value, na.rm = TRUE)")
+
+  d %>% ggplot(aes_string(x = "group", y = "value", color = "group")) +
+    geom_jitter(width = .5, size = 1, height = 0) +
+    facet_wrap(~gene, scales = scales, labeller = as_labeller(label)) +
+    guides(color = guide_legend(title = "group")) +
+    geom_hline(aes_string(yintercept = "mean", color = "group"), data = dd)
+}
+
 
 #' Plot a heatmap with the significance of terms from enrichment results.
 #'
