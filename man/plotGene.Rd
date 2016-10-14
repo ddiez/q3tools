@@ -7,13 +7,15 @@
 plotGene(symbol, genome, add.ideogram = FALSE, add.data = NULL, ...)
 }
 \arguments{
-\item{symbol}{symbol of the gene to plot. Will be used to search using BiomartGeneRegionTrack}
+\item{symbol}{symbol of the gene to plot. Will be used to search using BiomartGeneRegionTrack.}
 
-\item{genome}{genome assembly (e.g. mm10 or hg38)}
+\item{genome}{genome assembly (e.g. mm10 or hg38).}
 
-\item{add.ideogram}{whether to add an IdeogramTrack (FALSE by default to spead up testing)}
+\item{add.ideogram}{whether to add an IdeogramTrack (FALSE by default to spead up testing).}
 
-\item{...}{further arguments passed to plotTracks}
+\item{add.data}{list with data to be added as a DataTrack.}
+
+\item{...}{further arguments passed to plotTracks.}
 }
 \value{
 nothing but produces a plot as side effect.

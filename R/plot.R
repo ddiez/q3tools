@@ -342,10 +342,11 @@ plotCorrelation <- function(x, title = "Sample correlation", cluster = FALSE) {
 
 #' Basic gene ploting function
 #'
-#' @param symbol symbol of the gene to plot. Will be used to search using BiomartGeneRegionTrack
-#' @param genome genome assembly (e.g. mm10 or hg38)
-#' @param add.ideogram whether to add an IdeogramTrack (FALSE by default to spead up testing)
-#' @param ... further arguments passed to plotTracks
+#' @param symbol symbol of the gene to plot. Will be used to search using BiomartGeneRegionTrack.
+#' @param genome genome assembly (e.g. mm10 or hg38).
+#' @param add.ideogram whether to add an IdeogramTrack (FALSE by default to spead up testing).
+#' @param add.data list with data to be added as a DataTrack.
+#' @param ... further arguments passed to plotTracks.
 #'
 #' @return nothing but produces a plot as side effect.
 #' @export
