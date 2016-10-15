@@ -1,6 +1,9 @@
-#' Plots the mean-variance trend as computed by voom().
+#' Plots the mean-variance trend.
 #'
-#' @param x Output of voom() function (with save.plot = TRUE)
+#' This function uses the information stored in the object returned by voom() when called
+#' with save.plot = TRUE.
+#'
+#' @param x Output of voom() function.
 #'
 #' @return
 #' @export
@@ -12,7 +15,10 @@ plotVoom <- function(x) {
   qplot(d$x, d$y, size = I(.1), xlab = d$xlab, ylab = d$ylab, main = "voom: Mean-variance trend") + annotate("line", x = l$x, y = l$y, color = "red", size = 1)
 }
 
-#' Title
+#' Plot a heatmap of TestResult object from limma package
+#'
+#' This plots a heatmap of the TestResult object returned by decideTests. The columns are the coefficients
+#' and the rows are the genes.
 #'
 #' @param x TestResult object.
 #'
