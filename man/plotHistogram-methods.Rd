@@ -3,24 +3,26 @@
 \docType{methods}
 \name{plotHistogram}
 \alias{plotHistogram}
+\alias{plotHistogram,DGEList-method}
+\alias{plotHistogram,EList-method}
 \alias{plotHistogram,ExpressionSet-method}
 \alias{plotHistogram,matrix-method}
 \title{Plot a hisogram of values.}
 \usage{
-plotHistogram(x, group = NULL, ...)
+plotHistogram(x, group = NULL)
 
 \S4method{plotHistogram}{matrix}(x, group = NULL)
 
-\S4method{plotHistogram}{ExpressionSet}(x, group = NULL, groupCol = NULL)
+\S4method{plotHistogram}{ExpressionSet}(x, group = NULL)
+
+\S4method{plotHistogram}{EList}(x, group = NULL)
+
+\S4method{plotHistogram}{DGEList}(x, group = NULL)
 }
 \arguments{
 \item{x}{object from which to extract a matrix to plot the histogram.}
 
 \item{group}{grouping variable (columns).}
-
-\item{...}{further arguments passed to methods.}
-
-\item{groupCol}{Column name from which extract grouping variable.}
 }
 \description{
 Plot a histogram, maybe with facets as a function of some grouping variable.
