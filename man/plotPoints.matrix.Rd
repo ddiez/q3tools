@@ -16,6 +16,14 @@ plotPoints.matrix(x, group = NULL, label = NULL, scales = "fixed")
 \item{scales}{scales argument passed down to facet_wrap (default: fixed).}
 }
 \description{
-This is a simpler alternative to plotPoint() that takes as an argument a matrix.
+Takes a matrix and produces a dots plot using geom jitter.
+}
+\details{
+Alternatively points are grouped by the groups assigned to the
+group argument, which is applied to the columns. Each row is plotted in a
+different panel using facet_wrap. The label of the facets is by default
+the rownames but it can be passed using the argument label. The scales
+of the plots are by default the same but this can be controled with the
+scale argument (e.g. changed to 'free_y').
 }
 
