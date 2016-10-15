@@ -145,121 +145,55 @@ plotHistogram <- function(x) {
 
 
 
-#' Plot jittered points by group.
-#'
-#' @param x an object from which a matrix can be obtained.
-#' @param selection character or numeric vector with a selection to plot.
-#' @param group character vector with grouping variable.
-#' @param groupCol grouping variable name (to obtain group from x).
-#' @param cpm whether to compute cpm().
-#' @param prior.count argument for cpm().
-#' @param log argument for cpm().
-#' @param scales argument passed to facet_wrap().
-#'
-#' @return
-#' @export
-#'
-#' @examples
-plotPoints <- function(x, selection = NULL, group = NULL, groupCol = "group", cpm = FALSE, prior.count = 2, log = TRUE, scales = "fixed") {
-  if (cpm) {
-    y <- edgeR::cpm(x, prior.count = prior.count, log = log)
-  } else {
-    if (class(x) == "DGEList")
-      y <- x$counts
-    if (class(x) == "EList")
-      y <- x$E
-    if (class(x) == "ExpressionSet")
-      y <- exprs(x)
-    if (class(x) == "matrix")
-      y <- x
-  }
-
-  if (class(x) == "DGEList" && is.null(group)) {
-    group <- x$samples[[groupCol]]
-    names(group) <- rownames(x$samples)
-  }
-
-  if (class(x) == "EList" && is.null(group)) {
-    group <- x$targets[[groupCol]]
-    names(group) <- rownames(x$targets)
-  }
-
-  if (class(x) == "ExpressionSet" && is.null(group)) {
-    s <- sampleNames(x)
-    group <- x[[groupCol]]
-    names(group) <- sampleNames(x)
-  }
-
-  if (class(x) == "matrix") {
-    if (is.null(group)) stop("group must not be NULL for matrix objects.")
-    names(group) <- colnames(x)
-  }
-
-  if (!is.null(selection))
-    y <- y[selection, , drop = FALSE]
-
-  d <- melt(y, varnames = c("protein", "sample"))
-  d$group <- group[d$sample]
-
-  dd <- d %>% group_by_("protein", "group") %>% summarize_(mean = "mean(value, na.rm = TRUE)")
-
-  d %>% ggplot(aes_string(x = "group", y = "value", color = "group")) +
-    geom_jitter(width = .5, size = 1, height = 0) +
-    facet_wrap(~protein, scales = scales) +
-    guides(color = guide_legend(title = "group")) +
-    geom_hline(aes_string(yintercept = "mean", color = "group"), data = dd)
-}
-
-#' @title Plot jittered points by group from a matrix.
-#' @description Takes a matrix and produces a dots plot using geom jitter.
-#' @details Alternatively points are grouped by the groups assigned to the
-#' group argument, which is applied to the columns. Each row is plotted in a
-#' different panel using facet_wrap. The label of the facets is by default
-#' the rownames but it can be passed using the argument label. The scales
-#' of the plots are by default the same but this can be controled with the
-#' scale argument (e.g. changed to 'free_y').
-#'
-#' @param x a matrix or an object that can be coherce to a matrix.
-#' @param group grouping variable (columns).
-#' @param label custom labels (rows).
-#' @param scales scales argument passed down to facet_wrap (default: fixed).
-#'
-#' @return
-#' @export
-#'
-#' @examples
-plotPoints.matrix <- function(x, group = NULL, label = NULL, scales = "fixed") {
-  x <- as.matrix(x)
-
-  if (is.null(colnames(x)))
-    colnames(x) <- seq_len(1:ncol(x))
-
-  if (is.null(rownames(x)))
-    rownames(x) <- seq_len(1:nrow(x))
-
-  if (!is.null(group))
-    names(group) <- colnames(x) # colnames can be NULL!
-
-  if (is.null(label)) {
-    label <- rownames(x)
-    names(label) <- rownames(x)
-  } else {
-    names(label) <- rownames(x)
-  }
-
-  d <- melt(x, varnames = c("gene", "sample"))
-  d$gene <- factor(d$gene, levels = rownames(x))
-  d$group <- group[as.character(d$sample)]
-
-  dd <- d %>% group_by_("gene", "group") %>% summarize_(mean = "mean(value, na.rm = TRUE)")
-
-  d %>% ggplot(aes_string(x = "group", y = "value", color = "group")) +
-    geom_jitter(width = .5, size = 1, height = 0) +
-    facet_wrap(~gene, scales = scales, labeller = as_labeller(label)) +
-    guides(color = guide_legend(title = "group")) +
-    geom_hline(aes_string(yintercept = "mean", color = "group"), data = dd)
-}
-
+# plotPoints_old <- function(x, selection = NULL, group = NULL, groupCol = "group", cpm = FALSE, prior.count = 2, log = TRUE, scales = "fixed") {
+#   if (cpm) {
+#     y <- edgeR::cpm(x, prior.count = prior.count, log = log)
+#   } else {
+#     if (class(x) == "DGEList")
+#       y <- x$counts
+#     if (class(x) == "EList")
+#       y <- x$E
+#     if (class(x) == "ExpressionSet")
+#       y <- exprs(x)
+#     if (class(x) == "matrix")
+#       y <- x
+#   }
+#
+#   if (class(x) == "DGEList" && is.null(group)) {
+#     group <- x$samples[[groupCol]]
+#     names(group) <- rownames(x$samples)
+#   }
+#
+#   if (class(x) == "EList" && is.null(group)) {
+#     group <- x$targets[[groupCol]]
+#     names(group) <- rownames(x$targets)
+#   }
+#
+#   if (class(x) == "ExpressionSet" && is.null(group)) {
+#     s <- sampleNames(x)
+#     group <- x[[groupCol]]
+#     names(group) <- sampleNames(x)
+#   }
+#
+#   if (class(x) == "matrix") {
+#     if (is.null(group)) stop("group must not be NULL for matrix objects.")
+#     names(group) <- colnames(x)
+#   }
+#
+#   if (!is.null(selection))
+#     y <- y[selection, , drop = FALSE]
+#
+#   d <- melt(y, varnames = c("protein", "sample"))
+#   d$group <- group[d$sample]
+#
+#   dd <- d %>% group_by_("protein", "group") %>% summarize_(mean = "mean(value, na.rm = TRUE)")
+#
+#   d %>% ggplot(aes_string(x = "group", y = "value", color = "group")) +
+#     geom_jitter(width = .5, size = 1, height = 0) +
+#     facet_wrap(~protein, scales = scales) +
+#     guides(color = guide_legend(title = "group")) +
+#     geom_hline(aes_string(yintercept = "mean", color = "group"), data = dd)
+# }
 
 #' Plot a heatmap with the significance of terms from enrichment results.
 #'
