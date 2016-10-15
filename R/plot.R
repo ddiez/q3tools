@@ -154,6 +154,8 @@ plotMds <- function(x, group = NULL) {
 
 #' Plot a heatmap of a correlation matrix.
 #'
+#' Computes the correlation matrix and passes it to plotHeatmap() with appropriate arguments.
+#'
 #' @param x and object from which an matrix can be obtained.
 #' @param title title of the plot.
 #' @param cluster logical; whether to cluster rows/columns.
@@ -163,26 +165,13 @@ plotMds <- function(x, group = NULL) {
 #'
 #' @examples
 plotCorrelation <- function(x, title = "Sample correlation", cluster = FALSE) {
-  if (class(x) == "ExpressionSet")
-    x <- exprs(x)
-
-  if(class(x) == "RangedSummarizedExperiment")
-    x <- SummarizedExperiment::assay(x)
-
-  m <- cor(x)
-
-  if (cluster) {
-    h <- hclust(as.dist(1 - cor(m)))
-    m <- m[h$order, h$order]
-  }
-
-  d <- melt(m, varnames = c("sample_i", "sample_j"), value.name = "correlation")
-
-  ggplot(d, aes_string(x = "sample_i", y = "sample_j", fill = "correlation")) +
-    geom_tile() +
-    labs(x = "", y = "", title = title) +
-    viridis::scale_fill_viridis(limits = c(0, 1), guide = guide_legend(reverse = TRUE)) +
-    theme(aspect.ratio = 1, axis.ticks = element_blank(), axis.text.x = element_text(angle = 90, hjust = 1, vjust = .5))
+  suppressMessages(
+    plotHeatmap(cor(x), row.cluster = cluster, col.cluster = cluster, scale = FALSE) +
+      theme(axis.text.y = element_text()) +
+      labs(x = "sample_i", y = "sample_j", title = title) +
+      guides(fill = guide_legend("correlation", reverse = TRUE)) +
+      scale_fill_viridis(limit = c(0, 1))
+  )
 }
 
 #' Basic gene ploting function
