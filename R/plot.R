@@ -143,58 +143,6 @@ plotHistogram <- function(x) {
   ggplot(d, aes_string(x = "value")) + geom_histogram(bins = 25) + facet_wrap(~group) + theme(aspect.ratio = 1)
 }
 
-
-
-# plotPoints_old <- function(x, selection = NULL, group = NULL, groupCol = "group", cpm = FALSE, prior.count = 2, log = TRUE, scales = "fixed") {
-#   if (cpm) {
-#     y <- edgeR::cpm(x, prior.count = prior.count, log = log)
-#   } else {
-#     if (class(x) == "DGEList")
-#       y <- x$counts
-#     if (class(x) == "EList")
-#       y <- x$E
-#     if (class(x) == "ExpressionSet")
-#       y <- exprs(x)
-#     if (class(x) == "matrix")
-#       y <- x
-#   }
-#
-#   if (class(x) == "DGEList" && is.null(group)) {
-#     group <- x$samples[[groupCol]]
-#     names(group) <- rownames(x$samples)
-#   }
-#
-#   if (class(x) == "EList" && is.null(group)) {
-#     group <- x$targets[[groupCol]]
-#     names(group) <- rownames(x$targets)
-#   }
-#
-#   if (class(x) == "ExpressionSet" && is.null(group)) {
-#     s <- sampleNames(x)
-#     group <- x[[groupCol]]
-#     names(group) <- sampleNames(x)
-#   }
-#
-#   if (class(x) == "matrix") {
-#     if (is.null(group)) stop("group must not be NULL for matrix objects.")
-#     names(group) <- colnames(x)
-#   }
-#
-#   if (!is.null(selection))
-#     y <- y[selection, , drop = FALSE]
-#
-#   d <- melt(y, varnames = c("protein", "sample"))
-#   d$group <- group[d$sample]
-#
-#   dd <- d %>% group_by_("protein", "group") %>% summarize_(mean = "mean(value, na.rm = TRUE)")
-#
-#   d %>% ggplot(aes_string(x = "group", y = "value", color = "group")) +
-#     geom_jitter(width = .5, size = 1, height = 0) +
-#     facet_wrap(~protein, scales = scales) +
-#     guides(color = guide_legend(title = "group")) +
-#     geom_hline(aes_string(yintercept = "mean", color = "group"), data = dd)
-# }
-
 #' Plot a heatmap with the significance of terms from enrichment results.
 #'
 #' @param ... results from enrichment, passed down to getEnrichmentResults()
