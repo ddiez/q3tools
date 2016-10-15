@@ -15,13 +15,13 @@ plotPoints(x, group = NULL, label = NULL, scales = "fixed", ...)
   scales = "fixed")
 
 \S4method{plotPoints}{ExpressionSet}(x, group = NULL, label = NULL,
-  scales = "fixed", groupCol = NULL)
+  scales = "fixed")
 
 \S4method{plotPoints}{EList}(x, group = NULL, label = NULL,
-  scales = "fixed", groupCol = NULL)
+  scales = "fixed")
 
 \S4method{plotPoints}{DGEList}(x, group = NULL, label = NULL,
-  scales = "fixed", groupCol = NULL)
+  scales = "fixed")
 }
 \arguments{
 \item{x}{a matrix or an object that can be coherce to a matrix.}
@@ -31,10 +31,6 @@ plotPoints(x, group = NULL, label = NULL, scales = "fixed", ...)
 \item{label}{custom labels (rows).}
 
 \item{scales}{scales argument passed down to facet_wrap (default: fixed).}
-
-\item{...}{further arguments passed to methods.}
-
-\item{groupCol}{Column name from which extract grouping variable.}
 }
 \description{
 Takes a matrix and produces a dots plot using geom jitter.

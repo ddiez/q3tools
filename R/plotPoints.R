@@ -13,7 +13,6 @@
 #' @param group grouping variable (columns).
 #' @param label custom labels (rows).
 #' @param scales scales argument passed down to facet_wrap (default: fixed).
-#' @param ... further arguments passed to methods.
 #'
 #' @return
 #' @export
@@ -49,7 +48,7 @@ function(x, group = NULL, label = NULL, scales = "fixed") {
   }
 
   d <- melt(x, varnames = c("gene", "sample"))
-  d$gene <- factor(d$gene, levels = rownames(x))
+  d$gene <- factor(d$gene, levels = rownames(x)) # this may be needed when gene ids are entrezgene (numeric).
   d$group <- group[as.character(d$sample)]
 
   dd <- d %>% group_by_("gene", "group") %>%
@@ -62,55 +61,24 @@ function(x, group = NULL, label = NULL, scales = "fixed") {
     geom_hline(aes_string(yintercept = "mean", color = "group"), data = dd)
 })
 
-#' @param groupCol Column name from which extract grouping variable.
-#'
 #' @rdname plotPoints-methods
 #' @aliases plotPoints,matrix-method
 setMethod("plotPoints", "ExpressionSet",
-function(x, group = NULL, label = NULL, scales = "fixed", groupCol = NULL) {
-  y <- exprs(x)
-
-  if (is.null(group)) {
-    if (!is.null(groupCol))
-      group <- x[[groupCol]]
-  }
-
-  s <- sampleNames(x)
-  names(group) <- sampleNames(x)
-
-  plotPoints(y, group = group, label = label, scales = scales)
+function(x, group = NULL, label = NULL, scales = "fixed") {
+  plotPoints(exprs(x), group = group, label = label, scales = scales)
 })
 
 #' @rdname plotPoints-methods
 #' @aliases plotPoints,EList-method
 setMethod("plotPoints", "EList",
-function(x, group = NULL, label = NULL, scales = "fixed", groupCol = NULL) {
-  y <- x$E
-
-  if (is.null(group)) {
-    if (!is.null(groupCol)) {
-      group <- x$targets[[groupCol]]
-      names(group) <- rownames(x$targets)
-    }
-  }
-
-  plotPoints(y, group = group, label = label, scales = scales)
+function(x, group = NULL, label = NULL, scales = "fixed") {
+  plotPoints(x$E, group = group, label = label, scales = scales)
 })
 
 
 #' @rdname plotPoints-methods
 #' @aliases plotPoints,DGEList-method
 setMethod("plotPoints", "DGEList",
-function(x, group = NULL, label = NULL, scales = "fixed", groupCol = NULL) {
-  y <- x$counts
-
-  if (is.null(group)) {
-    if (!is.null(groupCol)) {
-      group <- x$samples[[groupCol]]
-      names(group) <- rownames(x$samples)
-    }
-  }
-
-  plotPoints(y, group = group, label = label, scales = scales)
+function(x, group = NULL, label = NULL, scales = "fixed") {
+  plotPoints(x$counts, group = group, label = label, scales = scales)
 })
-
