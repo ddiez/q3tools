@@ -21,7 +21,7 @@
 #' @rdname plotPoints-methods
 #'
 #' @examples
-setGeneric("plotPoints", function(x, group = NULL, label = NULL, scales = "fixed", ...)
+setGeneric("plotPoints", function(x, group = NULL, label = NULL, scales = "fixed")
   standardGeneric("plotPoints")
 )
 
