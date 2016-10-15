@@ -71,12 +71,12 @@ function(x, group = NULL, label = NULL, scales = "fixed", groupCol = NULL) {
   y <- exprs(x)
 
   if (is.null(group)) {
-    if (!is.null(groupCol)) {
-      s <- sampleNames(x)
+    if (!is.null(groupCol))
       group <- x[[groupCol]]
-      names(group) <- sampleNames(x)
-    }
   }
+
+  s <- sampleNames(x)
+  names(group) <- sampleNames(x)
 
   plotPoints(y, group = group, label = label, scales = scales)
 })

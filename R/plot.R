@@ -109,40 +109,6 @@ plotPvalue <- function(x) {
   ggplot(d, aes_string(x = "value")) + geom_histogram(bins = 25) + facet_wrap(~coefficient) + labs(title = "Distribution of p-value") + theme(aspect.ratio = 1)
 }
 
-
-#' Title
-#'
-#' @param x object from which to extract a matrix to plot the histogram.
-#'
-#' @return
-#' @export
-#'
-#' @examples
-plotHistogram <- function(x) {
-  if (class(x) == "DGEList") {
-    y <- x$counts
-    group <- x$samples$group
-    names(group) <- rownames(x$samples)
-  }
-
-  if (class(x) == "EList") {
-    y <- x$E
-    group <- x$targets$group
-    names(group) <- rownames(x$targets)
-  }
-
-  if (class(x) == "ExpressionSet") {
-    y <- exprs(x)
-    s <- sampleNames(x)
-    group <- x$group
-    names(group) <- sampleNames(x)
-  }
-
-  d <- melt(y, varnames = c("protein", "sample"))
-  d$group <- group[d$sample]
-  ggplot(d, aes_string(x = "value")) + geom_histogram(bins = 25) + facet_wrap(~group) + theme(aspect.ratio = 1)
-}
-
 #' Plot a heatmap with the significance of terms from enrichment results.
 #'
 #' @param ... results from enrichment, passed down to getEnrichmentResults()
