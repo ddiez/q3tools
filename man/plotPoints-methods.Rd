@@ -9,7 +9,7 @@
 \alias{plotPoints,matrix-method}
 \title{Plot jittered points by group from a matrix.}
 \usage{
-plotPoints(x, group = NULL, label = NULL, scales = "fixed", ...)
+plotPoints(x, group = NULL, label = NULL, scales = "fixed")
 
 \S4method{plotPoints}{matrix}(x, group = NULL, label = NULL,
   scales = "fixed")
