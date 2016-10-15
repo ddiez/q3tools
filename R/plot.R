@@ -170,7 +170,7 @@ plotCorrelation <- function(x, title = "Sample correlation", cluster = FALSE) {
       theme(axis.text.y = element_text()) +
       labs(x = "sample_i", y = "sample_j", title = title) +
       guides(fill = guide_legend("correlation", reverse = TRUE)) +
-      scale_fill_viridis(limit = c(0, 1))
+      viridis::scale_fill_viridis(limit = c(0, 1))
   )
 }
 
