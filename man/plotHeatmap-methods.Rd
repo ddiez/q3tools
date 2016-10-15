@@ -3,6 +3,8 @@
 \docType{methods}
 \name{plotHeatmap}
 \alias{plotHeatmap}
+\alias{plotHeatmap,DGEList-method}
+\alias{plotHeatmap,EList-method}
 \alias{plotHeatmap,ExpressionSet-method}
 \alias{plotHeatmap,matrix-method}
 \title{Plots a heatmap of a matrix}
@@ -14,6 +16,12 @@ plotHeatmap(x, row.cluster = TRUE, col.cluster = FALSE, scale = FALSE)
 
 \S4method{plotHeatmap}{ExpressionSet}(x, row.cluster = TRUE,
   col.cluster = FALSE, scale = FALSE)
+
+\S4method{plotHeatmap}{EList}(x, row.cluster = TRUE, col.cluster = FALSE,
+  scale = FALSE)
+
+\S4method{plotHeatmap}{DGEList}(x, row.cluster = TRUE, col.cluster = FALSE,
+  scale = FALSE)
 }
 \arguments{
 \item{x}{object to plot.}

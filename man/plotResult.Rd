@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot.R
 \name{plotResult}
 \alias{plotResult}
-\title{Title}
+\title{Plot a heatmap of TestResult object from limma package}
 \usage{
 plotResult(x)
 }
@@ -10,6 +10,7 @@ plotResult(x)
 \item{x}{TestResult object.}
 }
 \description{
-Title
+This plots a heatmap of the TestResult object returned by decideTests. The columns are the coefficients
+and the rows are the genes.
 }
 

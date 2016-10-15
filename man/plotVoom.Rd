@@ -2,14 +2,15 @@
 % Please edit documentation in R/plot.R
 \name{plotVoom}
 \alias{plotVoom}
-\title{Plots the mean-variance trend as computed by voom().}
+\title{Plots the mean-variance trend.}
 \usage{
 plotVoom(x)
 }
 \arguments{
-\item{x}{Output of voom() function (with save.plot = TRUE)}
+\item{x}{Output of voom() function.}
 }
 \description{
-Plots the mean-variance trend as computed by voom().
+This function uses the information stored in the object returned by voom() when called
+with save.plot = TRUE.
 }
 
