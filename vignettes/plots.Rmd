@@ -1,0 +1,19 @@
+---
+title: "Plotting functions"
+author: "Diego Diez"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# Introduction
+
+```{r}
+library(q3tools)
+tmp <- data.matrix(iris[1:9, -5])
+plotPoints(tmp, group = rep(LETTERS[1:2], each = 2))
+```
+
