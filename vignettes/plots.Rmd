@@ -9,11 +9,41 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-# Introduction
-
-```{r}
+```{r setup, message=FALSE}
+knitr::opts_chunk$set(fig.width=5, fig.height=5)
 library(q3tools)
-tmp <- data.matrix(iris[1:9, -5])
-plotPoints(tmp, group = rep(LETTERS[1:2], each = 2))
+library(Biobase)
 ```
 
+
+# Introduction
+
+## Dots plot
+
+You can use matrices.
+
+```{r}
+tmp1 <- data.matrix(iris[1:4, -5])
+plotPoints(tmp1, group = rep(LETTERS[1:2], each = 2))
+```
+
+You can use other objects like `ExpressionSet`.
+
+```{r}
+data(sample.ExpressionSet)
+tmp2 <- sample.ExpressionSet[1:4, ]
+plotPoints(tmp2, group = tmp$sex)
+plotPoints(tmp2, group = tmp$type)
+```
+
+## Histograms
+
+```{r}
+plotHistogram(tmp1)
+plotHistogram(tmp1, group = rep(LETTERS[1:2], each = 2))
+```
+```{r}
+plotHistogram(tmp2)
+plotHistogram(tmp2, group = tmp2$sex)
+plotHistogram(tmp2, group = tmp2$type)
+```
