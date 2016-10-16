@@ -32,8 +32,8 @@ You can use other objects like `ExpressionSet`.
 ```{r}
 data(sample.ExpressionSet)
 tmp2 <- sample.ExpressionSet[1:4, ]
-plotPoints(tmp2, group = tmp$sex)
-plotPoints(tmp2, group = tmp$type)
+plotPoints(tmp2, group = tmp2$sex)
+plotPoints(tmp2, group = tmp2$type)
 ```
 
 ## Histograms
