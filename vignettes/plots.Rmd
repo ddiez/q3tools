@@ -38,6 +38,8 @@ plotPoints(tmp2, group = tmp2$type)
 
 ## Histograms
 
+A histogram.
+
 ```{r}
 plotHistogram(tmp1)
 plotHistogram(tmp1, group = rep(LETTERS[1:2], each = 2))
@@ -47,3 +49,42 @@ plotHistogram(tmp2)
 plotHistogram(tmp2, group = tmp2$sex)
 plotHistogram(tmp2, group = tmp2$type)
 ```
+
+## Heatmaps
+
+A heatmap.
+
+```{r}
+tmp2 <- sample.ExpressionSet[1:25, ]
+plotHeatmap(tmp2)
+plotHeatmap(tmp2, col.cluster = TRUE, scale = TRUE)
+```
+
+A correlation heatmap.
+
+```{r}
+plotCorrelation(exprs(sample.ExpressionSet), cluster = TRUE)
+```
+
+## Venn diagrams
+
+A venn diagram.
+
+```{r}
+plotVenn(
+  iris[, -5] > 2,
+  fill = c("cornflowerblue", "orange", "darkorchid1", "yellowgreen"),
+  alpha = .3,
+  col = NA
+  )
+```
+
+
+## Gene tracks
+
+A gene track.
+
+```{r}
+plotGene("Stat1", "mm10")
+```
+
