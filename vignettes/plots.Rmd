@@ -79,6 +79,14 @@ plotVenn(
   )
 ```
 
+## MDS
+
+A MDS plot.
+
+```{r}
+plotMds(iris[, -5], group = c("A", "A", "B", "B"))
+```
+
 
 ## Gene tracks
 
