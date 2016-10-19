@@ -93,6 +93,12 @@ plotMds(iris[, -5], group = c("A", "A", "B", "B"))
 A gene track.
 
 ```{r}
+# plot some gene.
 plotGene("Stat1", "mm10")
+# add some data.
+f <- system.file("files/example.bam", package = "q3tools")
+plotGene("Stat1", "mm10", add.data = list("Exo+" = f))
+# zoom in.
+plotGene("Stat1", "mm10", add.data = list("Exo+" = f), from = 52.12e6, to = 52.14e6)
 ```
 
