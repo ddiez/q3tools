@@ -4,7 +4,8 @@
 \alias{plotGene}
 \title{Basic gene ploting function}
 \usage{
-plotGene(symbol, genome, add.ideogram = FALSE, add.data = NULL, ...)
+plotGene(symbol, genome, add.ideogram = FALSE, add.data = NULL,
+  from = NULL, to = NULL, ...)
 }
 \arguments{
 \item{symbol}{symbol of the gene to plot. Will be used to search using BiomartGeneRegionTrack.}
@@ -15,12 +16,16 @@ plotGene(symbol, genome, add.ideogram = FALSE, add.data = NULL, ...)
 
 \item{add.data}{list with data to be added as a DataTrack.}
 
+\item{from}{start genomic coordinates.}
+
+\item{to}{end genomic coordinates.}
+
 \item{...}{further arguments passed to plotTracks.}
 }
 \value{
 nothing but produces a plot as side effect.
 }
 \description{
-Basic gene ploting function
+Plots a gene from a specified assembly using Gviz package. Optionaly plots some data (e.g. read alignments). Enables zooming.
 }
 

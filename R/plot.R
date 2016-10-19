@@ -176,10 +176,14 @@ plotCorrelation <- function(x, title = "Sample correlation", cluster = FALSE) {
 
 #' Basic gene ploting function
 #'
+#' Plots a gene from a specified assembly using Gviz package. Optionaly plots some data (e.g. read alignments). Enables zooming.
+#'
 #' @param symbol symbol of the gene to plot. Will be used to search using BiomartGeneRegionTrack.
 #' @param genome genome assembly (e.g. mm10 or hg38).
 #' @param add.ideogram whether to add an IdeogramTrack (FALSE by default to spead up testing).
 #' @param add.data list with data to be added as a DataTrack.
+#' @param from start genomic coordinates.
+#' @param to end genomic coordinates.
 #' @param ... further arguments passed to plotTracks.
 #'
 #' @return nothing but produces a plot as side effect.
@@ -188,7 +192,7 @@ plotCorrelation <- function(x, title = "Sample correlation", cluster = FALSE) {
 #' @import Gviz
 #'
 #' @examples
-plotGene <- function(symbol, genome, add.ideogram = FALSE, add.data = NULL, ...) {
+plotGene <- function(symbol, genome, add.ideogram = FALSE, add.data = NULL, from = NULL, to = NULL, ...) {
   itrack <- NULL
   if (add.ideogram)
     itrack <- IdeogramTrack(genome = genome)
@@ -222,6 +226,14 @@ plotGene <- function(symbol, genome, add.ideogram = FALSE, add.data = NULL, ...)
                 col.title = "black",
                 background.title = "white")
     })
+
+    if (!is.null(from) || !is.null(to)) {
+      if (is.null(from))
+        from <- min(start(bmtrack))
+
+      if (is.null(to))
+        to <- max(end(bmtrack))
+    }
   }
 
   tl <- c(
@@ -230,6 +242,7 @@ plotGene <- function(symbol, genome, add.ideogram = FALSE, add.data = NULL, ...)
     bmtrack,
     dtrack
   )
-  plotTracks(tl, chromosome = chromosome(bmtrack), ...)
+  plotTracks(tl, chromosome = chromosome(bmtrack), from = from, to = to, ...)
+  invisible(bmtrack)
 }
 
