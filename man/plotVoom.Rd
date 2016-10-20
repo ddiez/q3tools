@@ -10,7 +10,7 @@ plotVoom(x)
 \item{x}{Output of voom() function.}
 }
 \description{
-This function uses the information stored in the object returned by voom() when called
-with save.plot = TRUE.
+This function uses the information stored in the object returned by voom()
+when called with save.plot = TRUE.
 }
 

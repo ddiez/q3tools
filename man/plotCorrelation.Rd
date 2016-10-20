@@ -14,6 +14,7 @@ plotCorrelation(x, title = "Sample correlation", cluster = FALSE)
 \item{cluster}{logical; whether to cluster rows/columns.}
 }
 \description{
-Computes the correlation matrix and passes it to plotHeatmap() with appropriate arguments.
+Computes the correlation matrix and passes it to plotHeatmap() with
+appropriate arguments.
 }
 

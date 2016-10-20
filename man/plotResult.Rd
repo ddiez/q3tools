@@ -10,7 +10,7 @@ plotResult(x)
 \item{x}{TestResult object.}
 }
 \description{
-This plots a heatmap of the TestResult object returned by decideTests. The columns are the coefficients
-and the rows are the genes.
+This plots a heatmap of the TestResult object returned by decideTests. The
+columns are the coefficients and the rows are the genes.
 }
 
