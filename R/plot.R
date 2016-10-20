@@ -1,7 +1,7 @@
 #' Plots the mean-variance trend.
 #'
-#' This function uses the information stored in the object returned by voom() when called
-#' with save.plot = TRUE.
+#' This function uses the information stored in the object returned by voom()
+#' when called with save.plot = TRUE.
 #'
 #' @param x Output of voom() function.
 #'
@@ -17,8 +17,8 @@ plotVoom <- function(x) {
 
 #' Plot a heatmap of TestResult object from limma package
 #'
-#' This plots a heatmap of the TestResult object returned by decideTests. The columns are the coefficients
-#' and the rows are the genes.
+#' This plots a heatmap of the TestResult object returned by decideTests. The
+#' columns are the coefficients and the rows are the genes.
 #'
 #' @param x TestResult object.
 #'
@@ -118,7 +118,16 @@ plotVenn <- function(x, add.universe = FALSE, ...) {
   }
   flog.threshold(futile.logger::ERROR, name = "VennDiagramLogger")
   grid::grid.newpage()
-  grid::grid.draw(VennDiagram::venn.diagram(m2l(x, add.universe = add.universe), filename = NULL, fontfamily = "sans", cat.fontfamily = "sans", main.fontfamily = "sans", ...))
+  grid::grid.draw(
+    VennDiagram::venn.diagram(
+      m2l(x, add.universe = add.universe),
+      filename = NULL,
+      fontfamily = "sans",
+      cat.fontfamily = "sans",
+      main.fontfamily = "sans",
+      ...
+    )
+  )
 }
 
 
@@ -154,7 +163,8 @@ plotMds <- function(x, group = NULL) {
 
 #' Plot a heatmap of a correlation matrix.
 #'
-#' Computes the correlation matrix and passes it to plotHeatmap() with appropriate arguments.
+#' Computes the correlation matrix and passes it to plotHeatmap() with
+#' appropriate arguments.
 #'
 #' @param x and object from which an matrix can be obtained.
 #' @param title title of the plot.
