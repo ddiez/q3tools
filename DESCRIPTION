@@ -11,6 +11,7 @@ Description: These package contains some plotting tools at the moment. They help
 Imports:
   methods,
   Biobase,
+  IRanges,
   Gviz,
   SummarizedExperiment,
   limma,

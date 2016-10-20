@@ -13,6 +13,7 @@ vignette: >
 knitr::opts_chunk$set(fig.width=5, fig.height=5)
 library(q3tools)
 library(Biobase)
+library(IRanges)
 ```
 
 
@@ -100,5 +101,15 @@ f <- system.file("files/example.bam", package = "q3tools")
 plotGene("Stat1", "mm10", add.data = list("Exo+" = f))
 # zoom in.
 plotGene("Stat1", "mm10", add.data = list("Exo+" = f), from = 52.12e6, to = 52.14e6)
+```
+
+
+## Ranges
+
+A set of ranges.
+```{r}
+tmp <- IRanges(start = c(1, 7, 10, 5, 13), end = c(4, 12, 15, 8, 14))
+tmp
+plotRanges(tmp, sep = .3)
 ```
 
