@@ -49,6 +49,9 @@ A histogram.
 plotHistogram(tmp1)
 plotHistogram(tmp1, group = rep(LETTERS[1:2], each = 2))
 ```
+
+An example using `ExpressionSet` object.
+
 ```{r}
 plotHistogram(tmp2)
 plotHistogram(tmp2, group = tmp2$sex)
@@ -111,6 +114,7 @@ plotGene("Stat1", "mm10", add.data = list("Exo+" = f), from = 52.12e6, to = 52.1
 ## Ranges
 
 A set of ranges.
+
 ```{r}
 tmp <- IRanges(start = c(1, 7, 10, 5, 13), end = c(4, 12, 15, 8, 14))
 tmp
@@ -118,6 +122,7 @@ plotRanges(tmp, sep = .3)
 ```
 
 If we have GRanges we have to specified the seqname.
+
 ```{r}
 # create GRanges from IRanges.
 tmp <- GRanges(seqnames = c(1,1,2,2,2), ranges = tmp)
