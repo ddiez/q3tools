@@ -14,6 +14,7 @@ knitr::opts_chunk$set(fig.width=5, fig.height=5)
 library(q3tools)
 library(Biobase)
 library(IRanges)
+library(GenomicRanges)
 ```
 
 
@@ -112,4 +113,15 @@ tmp <- IRanges(start = c(1, 7, 10, 5, 13), end = c(4, 12, 15, 8, 14))
 tmp
 plotRanges(tmp, sep = .3)
 ```
+
+If we have GRanges we have to specified the seqname.
+```{r}
+# create GRanges from IRanges.
+tmp <- GRanges(seqnames = c(1,1,2,2,2), ranges = tmp)
+plotRanges(tmp, seqnames = "1")
+plotRanges(tmp, seqnames = "2")
+# override seqnames.
+plotRanges(ranges(tmp))
+```
+
 
