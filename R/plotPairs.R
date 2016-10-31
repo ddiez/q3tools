@@ -33,12 +33,12 @@ plotPairs <- function(x) {
 
   gt <- gtable_matrix("ggpairs", gmatrix, unit(rep(1, n), "null"), unit(rep(1, n), "null"))
 
-  gt <- gtable_add_rows(gt, unit(.2, "null"), pos = 0)
+  gt <- gtable_add_rows(gt, unit(1, "lines"), pos = 0)
   for (j in 1:ncol(x)) {
     gt <- gtable_add_grob(gt, textGrob(colnames(x)[j], x = unit(.5, "npc"), y = unit(.5, "npc")), t = 1, l = j)
   }
 
-  gt <- gtable_add_cols(gt, unit(.2, "null"), pos = 0)
+  gt <- gtable_add_cols(gt, unit(1, "lines"), pos = 0)
   for (j in 1:ncol(x)) {
     gt <- gtable_add_grob(gt, textGrob(colnames(x)[j], x = unit(.5, "npc"), y = unit(.5, "npc"), rot = 90), t = j + 1, l = 1)
   }
