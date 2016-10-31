@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ggplo2-style MDS plot using plotMDS() in the limma package to get the data. — plotMds • q3tools</title>
+<title>plotPairs — plotPairs • q3tools</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -69,25 +69,27 @@
       </header>
 
       <div class="page-header">
-  <h1>ggplo2-style MDS plot using plotMDS() in the limma package to get the data.</h1>
+  <h1>plotPairs</h1>
 </div>
 
 <div class="row">
   <div class="col-md-9">
     
-    <p>ggplo2-style MDS plot using plotMDS() in the limma package to get the data.</p>
+    <p>Plots a matrix of pairwise scatter plots (similar to graphics::pairs and GGally::ggpairs).</p>
     
 
-    <pre><span class='fu'>plotMds</span>(<span class='no'>x</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre><span class='fu'>plotPairs</span>(<span class='no'>x</span>)</pre>
     
     <h2>Arguments</h2>
     <dl class="dl-horizontal">
       <dt>x</dt>
-      <dd>an object from which a data matrix can be obtained.</dd>
-      <dt>group</dt>
-      <dd>grouping variable.</dd>
+      <dd>matrix to plot.</dd>
     </dl>
-          </div>
+        
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>NULL</span></div><div class='output co'>#&gt; NULL
+#&gt; </div></pre>
+  </div>
   <div class="col-md-3">
   </div>
 </div>

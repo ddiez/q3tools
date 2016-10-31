@@ -34,12 +34,11 @@
       <h1>Plotting functions</h1>
                         <h4 class="author">Diego Diez</h4>
             
-            <h4 class="date">2016-10-25</h4>
+            <h4 class="date">2016-10-31</h4>
           </div>
 
     
     
-<div class="contents">
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
 <p>Required packages for building this vignette:</p>
@@ -49,7 +48,7 @@
 <span class="kw">library</span>(IRanges)
 <span class="kw">library</span>(GenomicRanges)</code></pre></div>
 <div id="dots-plot" class="section level2">
-<h2 class="hasAnchor"><html><body><a href="#introduction" class="anchor"></a></body></html>Dots plot</h2>
+<h2>Dots plot</h2>
 <p>You can use matrices.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tmp1 &lt;-<span class="st"> </span><span class="kw">data.matrix</span>(iris[<span class="dv">1</span>:<span class="dv">4</span>, -<span class="dv">5</span>])
 <span class="kw"><a href="../reference/plotPoints.html">plotPoints</a></span>(tmp1, <span class="dt">group =</span> <span class="kw">rep</span>(LETTERS[<span class="dv">1</span>:<span class="dv">2</span>], <span class="dt">each =</span> <span class="dv">2</span>))</code></pre></div>
@@ -63,7 +62,7 @@ tmp2 &lt;-<span class="st"> </span>sample.ExpressionSet[<span class="dv">1</span
 <p><img src="plots_files/figure-html/unnamed-chunk-2-2.png" width="480"></p>
 </div>
 <div id="histograms" class="section level2">
-<h2 class="hasAnchor"><html><body><a href="#dots-plot" class="anchor"></a></body></html>Histograms</h2>
+<h2>Histograms</h2>
 <p>A histogram.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/plotHistogram.html">plotHistogram</a></span>(tmp1)</code></pre></div>
 <p><img src="plots_files/figure-html/unnamed-chunk-3-1.png" width="480"></p>
@@ -77,20 +76,30 @@ tmp2 &lt;-<span class="st"> </span>sample.ExpressionSet[<span class="dv">1</span
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/plotHistogram.html">plotHistogram</a></span>(tmp2, <span class="dt">group =</span> tmp2$type)</code></pre></div>
 <p><img src="plots_files/figure-html/unnamed-chunk-4-3.png" width="480"></p>
 </div>
+<div id="pairs" class="section level2">
+<h2>Pairs</h2>
+<p>A paired scatterplot.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/plotPairs.html">plotPairs</a></span>(mtcars[,<span class="dv">1</span>:<span class="dv">4</span>])</code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="plots_files/figure-html/unnamed-chunk-5-1.png" width="480"></p>
+</div>
 <div id="heatmaps" class="section level2">
-<h2 class="hasAnchor"><html><body><a href="#histograms" class="anchor"></a></body></html>Heatmaps</h2>
+<h2>Heatmaps</h2>
 <p>A heatmap.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tmp2 &lt;-<span class="st"> </span>sample.ExpressionSet[<span class="dv">1</span>:<span class="dv">25</span>, ]
 <span class="kw"><a href="../reference/plotHeatmap.html">plotHeatmap</a></span>(tmp2)</code></pre></div>
-<p><img src="plots_files/figure-html/unnamed-chunk-5-1.png" width="480"></p>
+<p><img src="plots_files/figure-html/unnamed-chunk-6-1.png" width="480"></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/plotHeatmap.html">plotHeatmap</a></span>(tmp2, <span class="dt">col.cluster =</span> <span class="ot">TRUE</span>, <span class="dt">scale =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<p><img src="plots_files/figure-html/unnamed-chunk-5-2.png" width="480"></p>
+<p><img src="plots_files/figure-html/unnamed-chunk-6-2.png" width="480"></p>
 <p>A correlation heatmap.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/plotCorrelation.html">plotCorrelation</a></span>(<span class="kw">exprs</span>(sample.ExpressionSet), <span class="dt">cluster =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<p><img src="plots_files/figure-html/unnamed-chunk-6-1.png" width="480"></p>
+<p><img src="plots_files/figure-html/unnamed-chunk-7-1.png" width="480"></p>
 </div>
 <div id="venn-diagrams" class="section level2">
-<h2 class="hasAnchor"><html><body><a href="#heatmaps" class="anchor"></a></body></html>Venn diagrams</h2>
+<h2>Venn diagrams</h2>
 <p>A venn diagram.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/plotVenn.html">plotVenn</a></span>(
   iris[, -<span class="dv">5</span>] &gt;<span class="st"> </span><span class="dv">2</span>,
@@ -98,30 +107,29 @@ tmp2 &lt;-<span class="st"> </span>sample.ExpressionSet[<span class="dv">1</span
   <span class="dt">alpha =</span> .<span class="dv">3</span>,
   <span class="dt">col =</span> <span class="ot">NA</span>
   )</code></pre></div>
-<p><img src="plots_files/figure-html/unnamed-chunk-7-1.png" width="480"></p>
-</div>
-<div id="mds" class="section level2">
-<h2 class="hasAnchor"><html><body><a href="#venn-diagrams" class="anchor"></a></body></html>MDS</h2>
-<p>A MDS plot.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/plotMds.html">plotMds</a></span>(iris[, -<span class="dv">5</span>], <span class="dt">group =</span> <span class="kw">c</span>(<span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"B"</span>))</code></pre></div>
 <p><img src="plots_files/figure-html/unnamed-chunk-8-1.png" width="480"></p>
 </div>
+<div id="mds" class="section level2">
+<h2>MDS</h2>
+<p>A MDS plot.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/plotMds.html">plotMds</a></span>(iris[, -<span class="dv">5</span>], <span class="dt">group =</span> <span class="kw">c</span>(<span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"B"</span>))</code></pre></div>
+</div>
 <div id="gene-tracks" class="section level2">
-<h2 class="hasAnchor"><html><body><a href="#mds" class="anchor"></a></body></html>Gene tracks</h2>
+<h2>Gene tracks</h2>
 <p>A gene track.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plot some gene.</span>
 <span class="kw"><a href="../reference/plotGene.html">plotGene</a></span>(<span class="st">"Stat1"</span>, <span class="st">"mm10"</span>)</code></pre></div>
-<p><img src="plots_files/figure-html/unnamed-chunk-9-1.png" width="480"></p>
+<p><img src="plots_files/figure-html/unnamed-chunk-10-1.png" width="480"></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># add some data.</span>
 f &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">"files/example.bam"</span>, <span class="dt">package =</span> <span class="st">"q3tools"</span>)
 <span class="kw"><a href="../reference/plotGene.html">plotGene</a></span>(<span class="st">"Stat1"</span>, <span class="st">"mm10"</span>, <span class="dt">add.data =</span> <span class="kw">list</span>(<span class="st">"Exo+"</span> =<span class="st"> </span>f))</code></pre></div>
-<p><img src="plots_files/figure-html/unnamed-chunk-9-2.png" width="480"></p>
+<p><img src="plots_files/figure-html/unnamed-chunk-10-2.png" width="480"></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># zoom in.</span>
 <span class="kw"><a href="../reference/plotGene.html">plotGene</a></span>(<span class="st">"Stat1"</span>, <span class="st">"mm10"</span>, <span class="dt">add.data =</span> <span class="kw">list</span>(<span class="st">"Exo+"</span> =<span class="st"> </span>f), <span class="dt">from =</span> <span class="fl">52.12e6</span>, <span class="dt">to =</span> <span class="fl">52.14e6</span>)</code></pre></div>
-<p><img src="plots_files/figure-html/unnamed-chunk-9-3.png" width="480"></p>
+<p><img src="plots_files/figure-html/unnamed-chunk-10-3.png" width="480"></p>
 </div>
 <div id="ranges" class="section level2">
-<h2 class="hasAnchor"><html><body><a href="#gene-tracks" class="anchor"></a></body></html>Ranges</h2>
+<h2>Ranges</h2>
 <p>A set of ranges.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tmp &lt;-<span class="st"> </span><span class="kw">IRanges</span>(<span class="dt">start =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">7</span>, <span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">13</span>), <span class="dt">end =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">8</span>, <span class="dv">14</span>))
 tmp</code></pre></div>
@@ -134,18 +142,17 @@ tmp</code></pre></div>
 ##   [4]         5         8         4
 ##   [5]        13        14         2</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/plotRanges.html">plotRanges</a></span>(tmp, <span class="dt">sep =</span> .<span class="dv">3</span>)</code></pre></div>
-<p><img src="plots_files/figure-html/unnamed-chunk-10-1.png" width="480"></p>
+<p><img src="plots_files/figure-html/unnamed-chunk-11-1.png" width="480"></p>
 <p>If we have GRanges we have to specified the seqname.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># create GRanges from IRanges.</span>
 tmp &lt;-<span class="st"> </span><span class="kw">GRanges</span>(<span class="dt">seqnames =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>), <span class="dt">ranges =</span> tmp)
 <span class="kw"><a href="../reference/plotRanges.html">plotRanges</a></span>(tmp, <span class="dt">seqnames =</span> <span class="st">"1"</span>)</code></pre></div>
-<p><img src="plots_files/figure-html/unnamed-chunk-11-1.png" width="480"></p>
+<p><img src="plots_files/figure-html/unnamed-chunk-12-1.png" width="480"></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/plotRanges.html">plotRanges</a></span>(tmp, <span class="dt">seqnames =</span> <span class="st">"2"</span>)</code></pre></div>
-<p><img src="plots_files/figure-html/unnamed-chunk-11-2.png" width="480"></p>
+<p><img src="plots_files/figure-html/unnamed-chunk-12-2.png" width="480"></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># override seqnames.</span>
 <span class="kw"><a href="../reference/plotRanges.html">plotRanges</a></span>(<span class="kw">ranges</span>(tmp))</code></pre></div>
-<p><img src="plots_files/figure-html/unnamed-chunk-11-3.png" width="480"></p>
-</div>
+<p><img src="plots_files/figure-html/unnamed-chunk-12-3.png" width="480"></p>
 </div>
 </div>
   </div>
@@ -156,6 +163,7 @@ tmp &lt;-<span class="st"> </span><span class="kw">GRanges</span>(<span class="d
         <h2>Contents</h2>
         <ul class="nav nav-pills nav-stacked"><li><a href="#introduction">Introduction</a><ul class="nav nav-pills nav-stacked"><li><a href="#dots-plot">Dots plot</a></li>
         <li><a href="#histograms">Histograms</a></li>
+        <li><a href="#pairs">Pairs</a></li>
         <li><a href="#heatmaps">Heatmaps</a></li>
         <li><a href="#venn-diagrams">Venn diagrams</a></li>
         <li><a href="#mds">MDS</a></li>
