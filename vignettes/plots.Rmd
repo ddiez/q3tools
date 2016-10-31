@@ -58,6 +58,14 @@ plotHistogram(tmp2, group = tmp2$sex)
 plotHistogram(tmp2, group = tmp2$type)
 ```
 
+## Pairs
+
+A paired scatterplot.
+```{r}
+plotPairs(mtcars[,1:4])
+```
+
+
 ## Heatmaps
 
 A heatmap.
