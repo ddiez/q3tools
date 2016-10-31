@@ -7,6 +7,8 @@
 #' @return NULL
 #' @export
 #'
+#' @import gtable grid
+#'
 #' @examples
 #' NULL
 plotPairs <- function(x) {
@@ -45,7 +47,7 @@ plotPairs <- function(x) {
   gt <- gtable_add_padding(gt, unit(.1, "null"))
 
 
-  grid::grid.newpage()
-  grid::grid.draw(gt)
+  grid.newpage()
+  grid.draw(gt)
   invisible(gt)
 }

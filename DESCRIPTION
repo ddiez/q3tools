@@ -26,6 +26,7 @@ Imports:
   norm,
   impute,
   grid,
+  gtable,
   VennDiagram,
   futile.logger
 Suggests: testthat, knitr, rmarkdown, GenomicRanges
