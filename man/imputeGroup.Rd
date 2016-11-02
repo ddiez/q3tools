@@ -22,7 +22,13 @@ imputeGroup(x, group = NULL, do.mar = TRUE, do.mnar = TRUE,
 
 \item{...}{additional arguments passed to the imputation methods.}
 }
+\value{
+a matrix with missing values imputed.
+}
 \description{
 By default MNAR missing values are assigned 0. MAR values are imputed with some of the methods.
+}
+\examples{
+NULL
 }
 

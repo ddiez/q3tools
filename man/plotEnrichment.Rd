@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot.R
 \name{plotEnrichment}
 \alias{plotEnrichment}
-\title{Plot a heatmap with the significance of terms from enrichment results.}
+\title{plotEnrichment}
 \usage{
 plotEnrichment(..., cutoff = 0.05, what = "P.Up", ontology = "BP",
   use.name = TRUE, short.names = FALSE, minlength = 40)
@@ -24,5 +24,8 @@ plotEnrichment(..., cutoff = 0.05, what = "P.Up", ontology = "BP",
 }
 \description{
 Plot a heatmap with the significance of terms from enrichment results.
+}
+\examples{
+NULL
 }
 

@@ -5,12 +5,13 @@
 #' @param x     object from which to extract a matrix to plot the histogram.
 #' @param group grouping variable (columns).
 #'
-#' @return
+#' @return NULL
 #' @export
 #'
 #' @docType methods
 #' @rdname plotHistogram-methods
 #' @examples
+#' NULL
 setGeneric("plotHistogram", function(x, group = NULL)
   standardGeneric("plotHistogram")
 )

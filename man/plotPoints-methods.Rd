@@ -43,4 +43,7 @@ the rownames but it can be passed using the argument label. The scales
 of the plots are by default the same but this can be controled with the
 scale argument (e.g. changed to 'free_y').
 }
+\examples{
+NULL
+}
 

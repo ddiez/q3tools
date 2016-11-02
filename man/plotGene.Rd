@@ -28,4 +28,7 @@ nothing but produces a plot as side effect.
 \description{
 Plots a gene from a specified assembly using Gviz package. Optionaly plots some data (e.g. read alignments). Enables zooming.
 }
+\examples{
+NULL
+}
 

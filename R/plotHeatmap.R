@@ -18,6 +18,7 @@
 #' @docType methods
 #' @rdname plotHeatmap-methods
 #' @examples
+#' NULL
 setGeneric("plotHeatmap", function(x, row.cluster = TRUE, col.cluster = FALSE, scale = FALSE)
   standardGeneric("plotHeatmap")
 )

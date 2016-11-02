@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot.R
 \name{plotVenn}
 \alias{plotVenn}
-\title{Plot a venn diagram with VennDiagram package using some nice defaults}
+\title{plotVenn}
 \usage{
 plotVenn(x, add.universe = FALSE, ...)
 }
@@ -15,5 +15,8 @@ plotVenn(x, add.universe = FALSE, ...)
 }
 \description{
 Plot a venn diagram with VennDiagram package using some nice defaults
+}
+\examples{
+NULL
 }
 

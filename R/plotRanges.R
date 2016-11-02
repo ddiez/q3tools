@@ -8,11 +8,12 @@
 #' @param sep vertical separation between ranges.
 #' @param ... further arguments passed down to methods.
 #'
-#' @return
+#' @return NULL
 #' @export
 #' @rdname plotRanges-methods
 #'
 #' @examples
+#' NULL
 setGeneric("plotRanges", function(x, sep = 0.5, ...)
   standardGeneric("plotRanges")
 )

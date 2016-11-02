@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot.R
 \name{plotMds}
 \alias{plotMds}
-\title{ggplo2-style MDS plot using plotMDS() in the limma package to get the data.}
+\title{plotMds}
 \usage{
 plotMds(x, group = NULL)
 }
@@ -13,5 +13,8 @@ plotMds(x, group = NULL)
 }
 \description{
 ggplo2-style MDS plot using plotMDS() in the limma package to get the data.
+}
+\examples{
+NULL
 }
 

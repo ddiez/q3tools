@@ -7,10 +7,11 @@
 #' @param short.names whether to use abbreviate() to shorten rownames (handy for long GO descriptions).
 #' @param minlength minimum length for abbreviate().
 #'
-#' @return
+#' @return a matrix with p-values from several enrichment analyses.
 #' @export
 #'
 #' @examples
+#' NULL
 getEnrichmentResults <- function(..., what = "P.Up", ontology = "BP", use.name = FALSE, short.names = FALSE, minlength = 40) {
   l <- list(...)
 
@@ -47,10 +48,11 @@ getEnrichmentResults <- function(..., what = "P.Up", ontology = "BP", use.name =
 #' @param method method used for imputation.
 #' @param ... additional arguments passed to the imputation methods.
 #'
-#' @return
+#' @return a matrix with missing values imputed.
 #' @export
 #'
 #' @examples
+#' NULL
 imputeGroup <- function(x, group = NULL, do.mar = TRUE, do.mnar = TRUE, mnar.default = 0, method = "knn", ...) {
   if (do.mnar) {
     d <- dimnames(x)
@@ -85,16 +87,19 @@ imputeGroup <- function(x, group = NULL, do.mar = TRUE, do.mnar = TRUE, mnar.def
 }
 
 
+#' getMDS
+#'
 #' Get plotting data from plotMDS() in the limma package
 #'
 #' @param ... pass function arguments to plotMDS.
 #'
-#' @return
+#' @return a list with information about MDS, including plotting data.
 #' @export
 #'
 #' @importFrom grDevices dev.off png
 #'
 #' @examples
+#' NULL
 getMDS <- function(...){
   ff <- tempfile()
   png(filename=ff)

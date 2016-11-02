@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot.R
 \name{plotPvalue}
 \alias{plotPvalue}
-\title{Title}
+\title{plotPvalue}
 \usage{
 plotPvalue(x)
 }
@@ -10,6 +10,9 @@ plotPvalue(x)
 \item{x}{object with a p.value element.}
 }
 \description{
-Title
+Plot distribution of p-values by group.
+}
+\examples{
+NULL
 }
 

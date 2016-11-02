@@ -2,14 +2,20 @@
 % Please edit documentation in R/tools.R
 \name{getMDS}
 \alias{getMDS}
-\title{Get plotting data from plotMDS() in the limma package}
+\title{getMDS}
 \usage{
 getMDS(...)
 }
 \arguments{
 \item{...}{pass function arguments to plotMDS.}
 }
+\value{
+a list with information about MDS, including plotting data.
+}
 \description{
 Get plotting data from plotMDS() in the limma package
+}
+\examples{
+NULL
 }
 

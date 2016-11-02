@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot.R
 \name{plotCorrelation}
 \alias{plotCorrelation}
-\title{Plot a heatmap of a correlation matrix.}
+\title{plotCorrelation}
 \usage{
 plotCorrelation(x, title = "Sample correlation", cluster = FALSE)
 }
@@ -14,7 +14,13 @@ plotCorrelation(x, title = "Sample correlation", cluster = FALSE)
 \item{cluster}{logical; whether to cluster rows/columns.}
 }
 \description{
+Plot a heatmap of a correlation matrix.
+}
+\details{
 Computes the correlation matrix and passes it to plotHeatmap() with
 appropriate arguments.
+}
+\examples{
+NULL
 }
 

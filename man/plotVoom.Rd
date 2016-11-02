@@ -13,4 +13,7 @@ plotVoom(x)
 This function uses the information stored in the object returned by voom()
 when called with save.plot = TRUE.
 }
+\examples{
+NULL
+}
 

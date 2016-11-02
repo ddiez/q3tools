@@ -13,4 +13,7 @@ plotResult(x)
 This plots a heatmap of the TestResult object returned by decideTests. The
 columns are the coefficients and the rows are the genes.
 }
+\examples{
+NULL
+}
 

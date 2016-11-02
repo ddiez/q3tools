@@ -27,4 +27,7 @@ This function plots a set of ranges in their locations. Overlapping is
 avoided. This function is based on a similar one in the IRanges vignette,
 but using ggplot2 graphics instead.
 }
+\examples{
+NULL
+}
 

@@ -38,4 +38,7 @@ This function returns no value but has the side effect of producing a plot.
 \description{
 Plots a heatmap with row and/or col clustering if specifief.
 }
+\examples{
+NULL
+}
 

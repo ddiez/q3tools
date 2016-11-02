@@ -14,13 +14,14 @@
 #' @param label custom labels (rows).
 #' @param scales scales argument passed down to facet_wrap (default: fixed).
 #'
-#' @return
+#' @return NULL
 #' @export
 #'
 #' @docType methods
 #' @rdname plotPoints-methods
 #'
 #' @examples
+#' NULL
 setGeneric("plotPoints", function(x, group = NULL, label = NULL, scales = "fixed")
   standardGeneric("plotPoints")
 )

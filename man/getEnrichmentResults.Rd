@@ -20,7 +20,13 @@ getEnrichmentResults(..., what = "P.Up", ontology = "BP",
 
 \item{minlength}{minimum length for abbreviate().}
 }
+\value{
+a matrix with p-values from several enrichment analyses.
+}
 \description{
 Create a matrix with several objects resulting from enrichment analysis with kegga() and goana()
+}
+\examples{
+NULL
 }
 

@@ -27,4 +27,7 @@ plotHistogram(x, group = NULL)
 \description{
 Plot a histogram, maybe with facets as a function of some grouping variable.
 }
+\examples{
+NULL
+}
 

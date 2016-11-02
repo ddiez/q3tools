@@ -5,10 +5,11 @@
 #'
 #' @param x Output of voom() function.
 #'
-#' @return
+#' @return NULL
 #' @export
 #'
 #' @examples
+#' NULL
 plotVoom <- function(x) {
   d <- x$voom.xy
   l <- x$voom.line
@@ -22,10 +23,11 @@ plotVoom <- function(x) {
 #'
 #' @param x TestResult object.
 #'
-#' @return
+#' @return NULL
 #' @export
 #'
 #' @examples
+#' NULL
 plotResult <- function(x) {
   x <- unclass(x) # For TestResult objects. Make this more general.
 
@@ -43,19 +45,24 @@ plotResult <- function(x) {
 }
 
 
-#' Title
+#' plotPvalue
+#'
+#' Plot distribution of p-values by group.
 #'
 #' @param x object with a p.value element.
 #'
-#' @return
+#' @return NULL
 #' @export
 #'
 #' @examples
+#' NULL
 plotPvalue <- function(x) {
   d <- melt(x$p.pvalue, varnames = c("protein", "coefficient"))
   ggplot(d, aes_string(x = "value")) + geom_histogram(bins = 25) + facet_wrap(~coefficient) + labs(title = "Distribution of p-value") + theme(aspect.ratio = 1)
 }
 
+#' plotEnrichment
+#'
 #' Plot a heatmap with the significance of terms from enrichment results.
 #'
 #' @param ... results from enrichment, passed down to getEnrichmentResults()
@@ -66,10 +73,11 @@ plotPvalue <- function(x) {
 #' @param short.names whether to use abbreviate() to shorten rownames (handy for long GO descriptions).
 #' @param minlength minimum length for abbreviate().
 #'
-#' @return
+#' @return NULL
 #' @export
 #'
 #' @examples
+#' NULL
 plotEnrichment <- function(..., cutoff = 0.05, what = "P.Up", ontology = "BP", use.name = TRUE, short.names = FALSE, minlength = 40) {
   k <- getEnrichmentResults(..., what = what, ontology = ontology, use.name = use.name, short.names = short.names, minlength = minlength)
   k <- k[rowSums(k < cutoff) > 0,]
@@ -88,18 +96,21 @@ plotEnrichment <- function(..., cutoff = 0.05, what = "P.Up", ontology = "BP", u
 }
 
 
+#' plotVenn
+#'
 #' Plot a venn diagram with VennDiagram package using some nice defaults
 #'
 #' @param x matrix of values (similar to what is fed to VennDiagram in limma package).
 #' @param ... additional parameters passed down to venn.diagrama()
 #' @param add.universe logical; whether to add a group containing all elements.
 #'
-#' @return
+#' @return NULL
 #' @export
 #'
 #' @importFrom futile.logger flog.threshold
 #'
 #' @examples
+#' NULL
 plotVenn <- function(x, add.universe = FALSE, ...) {
   m2l <- function(x, add.universe = FALSE) {
     l <- lapply(seq_len(ncol(x)), function(i) {
@@ -131,15 +142,18 @@ plotVenn <- function(x, add.universe = FALSE, ...) {
 }
 
 
+#' plotMds
+#'
 #' ggplo2-style MDS plot using plotMDS() in the limma package to get the data.
 #'
 #' @param x an object from which a data matrix can be obtained.
 #' @param group grouping variable.
 #'
-#' @return
+#' @return NULL
 #' @export
 #'
 #' @examples
+#' NULL
 plotMds <- function(x, group = NULL) {
   if(class(x) == "RangedSummarizedExperiment")
     x <- SummarizedExperiment::assay(x)
@@ -161,6 +175,8 @@ plotMds <- function(x, group = NULL) {
 }
 
 
+#' plotCorrelation
+#'
 #' Plot a heatmap of a correlation matrix.
 #'
 #' Computes the correlation matrix and passes it to plotHeatmap() with
@@ -170,10 +186,11 @@ plotMds <- function(x, group = NULL) {
 #' @param title title of the plot.
 #' @param cluster logical; whether to cluster rows/columns.
 #'
-#' @return
+#' @return NULL
 #' @export
 #'
 #' @examples
+#' NULL
 plotCorrelation <- function(x, title = "Sample correlation", cluster = FALSE) {
   suppressMessages(
     plotHeatmap(cor(x), row.cluster = cluster, col.cluster = cluster, scale = FALSE) +
@@ -202,6 +219,7 @@ plotCorrelation <- function(x, title = "Sample correlation", cluster = FALSE) {
 #' @import Gviz
 #'
 #' @examples
+#' NULL
 plotGene <- function(symbol, genome, add.ideogram = FALSE, add.data = NULL, from = NULL, to = NULL, ...) {
   itrack <- NULL
   if (add.ideogram)
