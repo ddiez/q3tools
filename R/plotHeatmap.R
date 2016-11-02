@@ -9,11 +9,6 @@
 #'
 #' @return This function returns no value but has the side effect of producing a plot.
 #' @export
-#' @import ggplot2 dplyr tidyr tibble
-#' @importFrom edgeR cpm
-#' @importFrom Biobase exprs pData fData sampleNames
-#' @importFrom stats as.dist cor hclust
-#' @importFrom reshape2 melt
 #'
 #' @docType methods
 #' @rdname plotHeatmap-methods

@@ -107,8 +107,6 @@ plotEnrichment <- function(..., cutoff = 0.05, what = "P.Up", ontology = "BP", u
 #' @return NULL
 #' @export
 #'
-#' @importFrom futile.logger flog.threshold
-#'
 #' @examples
 #' NULL
 plotVenn <- function(x, add.universe = FALSE, ...) {
@@ -215,8 +213,6 @@ plotCorrelation <- function(x, title = "Sample correlation", cluster = FALSE) {
 #'
 #' @return nothing but produces a plot as side effect.
 #' @export
-#'
-#' @import Gviz
 #'
 #' @examples
 #' NULL

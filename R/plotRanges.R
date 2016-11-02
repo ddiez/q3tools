@@ -20,7 +20,6 @@ setGeneric("plotRanges", function(x, sep = 0.5, ...)
 
 #' @rdname plotRanges-methods
 #' @aliases plotRanges,IRanges-method
-#' @importFrom IRanges IRanges disjointBins start end width
 setMethod("plotRanges", "IRanges",
 function(x, sep = 0.5) {
   # determine y-distance.

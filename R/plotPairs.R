@@ -11,8 +11,6 @@
 #' @return NULL
 #' @export
 #'
-#' @import gtable grid
-#'
 #' @examples
 #' NULL
 plotPairs <- function(x, geom.low = "point", geom.mid = "histogram", geom.up = "point") {

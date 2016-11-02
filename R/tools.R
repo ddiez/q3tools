@@ -96,8 +96,6 @@ imputeGroup <- function(x, group = NULL, do.mar = TRUE, do.mnar = TRUE, mnar.def
 #' @return a list with information about MDS, including plotting data.
 #' @export
 #'
-#' @importFrom grDevices dev.off png
-#'
 #' @examples
 #' NULL
 getMDS <- function(...){
