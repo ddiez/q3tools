@@ -6,6 +6,7 @@
 #' and limitations. You have been warned.
 #'
 #' @name q3tools
+#' @docType package
 #'
 #' @import Gviz ggplot2 dplyr tidyr tibble gtable grid
 #' @importFrom edgeR cpm
