@@ -4,13 +4,21 @@
 \alias{plotPairs}
 \title{plotPairs}
 \usage{
-plotPairs(x)
+plotPairs(x, geom.low = "point", geom.mid = "histogram",
+  geom.up = "point")
 }
 \arguments{
 \item{x}{matrix to plot.}
+
+\item{geom.low}{geom used for lower triangle (default: point)}
+
+\item{geom.mid}{geom used for diagonal (default: histogram)}
+
+\item{geom.up}{geom used for upper triangle (default: point)}
 }
 \description{
-Plots a matrix of pairwise scatter plots (similar to graphics::pairs and GGally::ggpairs).
+Plots a matrix of pairwise scatter plots a la base::pairs using ggplot2 graphics.
+Inspired by GGally::ggpairs, but aimed to be simpler.
 }
 \examples{
 NULL

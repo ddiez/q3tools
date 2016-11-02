@@ -63,6 +63,11 @@ plotHistogram(tmp2, group = tmp2$type)
 A paired scatterplot.
 ```{r}
 plotPairs(mtcars[,1:4])
+
+plotPairs(mtcars[,1:4], geom.low = "point", geom.mid = "density", geom.up = "density2d")
+
+tmp <- matrix(rnorm(1000 * 4), ncol = 4)
+plotPairs(tmp, geom.low = "hex", geom.up = "density2d")
 ```
 
 

@@ -1,8 +1,12 @@
 #' plotPairs
 #'
-#' Plots a matrix of pairwise scatter plots (similar to graphics::pairs and GGally::ggpairs).
+#' Plots a matrix of pairwise scatter plots a la base::pairs using ggplot2 graphics.
+#' Inspired by GGally::ggpairs, but aimed to be simpler.
 #'
 #' @param x matrix to plot.
+#' @param geom.low geom used for lower triangle (default: point)
+#' @param geom.mid geom used for diagonal (default: histogram)
+#' @param geom.up geom used for upper triangle (default: point)
 #'
 #' @return NULL
 #' @export
@@ -11,7 +15,7 @@
 #'
 #' @examples
 #' NULL
-plotPairs <- function(x) {
+plotPairs <- function(x, geom.low = "point", geom.mid = "histogram", geom.up = "point") {
   n <- ncol(x)
 
   comp_matrix <- as.matrix(expand.grid(seq_len(n), seq_len(n)))
@@ -21,9 +25,9 @@ plotPairs <- function(x) {
     type <- levels(factor(sign(z[1] - z[2])))
 
     switch(type,
-       "0" = {g <- ggplotGrob(qplot(x[,z[1]], geom = "histogram"))},
-      "-1" = {g <- ggplotGrob(qplot(x[,z[1]], x[, z[2]]))},
-       "1" = {g <- ggplotGrob(qplot(x[,z[1]], x[, z[2]], col = I("red")))}
+       "0" = {g <- ggplotGrob(qplot(x[,z[1]], geom = geom.mid))},
+      "-1" = {g <- ggplotGrob(qplot(x[,z[1]], x[, z[2]], geom = geom.up))},
+       "1" = {g <- ggplotGrob(qplot(x[,z[1]], x[, z[2]], geom = geom.low))}
     )
 
     gtable_filter(g, "panel")
