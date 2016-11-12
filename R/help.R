@@ -14,7 +14,7 @@
 #' @importFrom Biobase exprs pData fData sampleNames
 #' @importFrom stats as.dist cor hclust
 #' @importFrom reshape2 melt
-#' @importFrom IRanges IRanges disjointBins start end width
+#' @importFrom IRanges IRanges disjointBins start end width ranges
 #' @importFrom grDevices dev.off png
 #' @importFrom futile.logger flog.threshold
 #'
