@@ -8,7 +8,8 @@
 #' @name q3tools
 #' @docType package
 #'
-#' @import ggplot2 dplyr tidyr tibble gtable grid
+#' @import ggplot2 dplyr tidyr tibble gtable
+#' @importFrom grid grid.newpage grid.draw unit textGrob
 #' @importFrom Gviz IdeogramTrack GenomeAxisTrack BiomartGeneRegionTrack DataTrack plotTracks chromosome
 #' @importFrom edgeR cpm
 #' @importFrom Biobase exprs pData fData sampleNames
