@@ -2,9 +2,8 @@ Package: q3tools
 Type: Package
 Title: A bunch of shabby tools for the omics data analyst
 Version: 0.1.0
-Author: Diego Diez
-Maintainer: Diego Diez <diego10ruiz@gmail.com>
-Description: These package contains some plotting tools at the moment. They help
+Authors@R: person("Diego", "Diez", email = "diego10ruiz@gmail.com", role = c("aut", "cre"))
+Description: This package contains some plotting tools at the moment. They help
     make my life easier when analyzing omics data. But they are not neccesarily the
     best way to do things. Indeed, I expect them to contain many errors, bad choices
     and limitations. You have been warned.
