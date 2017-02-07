@@ -209,6 +209,7 @@ plotCorrelation <- function(x, title = "Sample correlation", cluster = FALSE) {
 #' @param add.data list with data to be added as a DataTrack.
 #' @param from start genomic coordinates.
 #' @param to end genomic coordinates.
+#' @param biomart mart object (optional).
 #' @param ... further arguments passed to plotTracks.
 #'
 #' @return nothing but produces a plot as side effect.
@@ -216,20 +217,33 @@ plotCorrelation <- function(x, title = "Sample correlation", cluster = FALSE) {
 #'
 #' @examples
 #' NULL
-plotGene <- function(symbol, genome, add.ideogram = FALSE, add.data = NULL, from = NULL, to = NULL, ...) {
+plotGene <- function(symbol, genome, add.ideogram = FALSE, add.data = NULL, from = NULL, to = NULL, biomart = NULL, ...) {
   itrack <- NULL
   if (add.ideogram)
     itrack <- IdeogramTrack(genome = genome)
   atrack <- GenomeAxisTrack(add35 = TRUE, add53 = TRUE)
-  bmtrack <- BiomartGeneRegionTrack(symbol = symbol,
-                                    genome = genome,
-                                    name = "EnsEMBL",
-                                    geneSymbols = TRUE,
-                                    showTranscriptID = TRUE,
-                                    col.line = NULL,
-                                    col = NULL,
-                                    col.title = "black",
-                                    background.title = "white")
+  if (!is.null(biomart)) {
+    bmtrack <- BiomartGeneRegionTrack(symbol = symbol,
+                                      biomart = biomart,
+                                      name = "EnsEMBL",
+                                      geneSymbols = TRUE,
+                                      showTranscriptID = TRUE,
+                                      col.line = NULL,
+                                      col = NULL,
+                                      col.title = "black",
+                                      background.title = "white")
+  } else {
+    bmtrack <- BiomartGeneRegionTrack(symbol = symbol,
+                                      genome = genome,
+                                      name = "EnsEMBL",
+                                      geneSymbols = TRUE,
+                                      showTranscriptID = TRUE,
+                                      col.line = NULL,
+                                      col = NULL,
+                                      col.title = "black",
+                                      background.title = "white")
+  }
+
 
   dtrack <- NULL
   if (!is.null(add.data)) {
