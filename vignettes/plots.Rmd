@@ -108,12 +108,11 @@ A MDS plot.
 plotMds(iris[, -5], group = c("A", "A", "B", "B"))
 ```
 
-
 ## Gene tracks
 
 A gene track.
 
-```{r}
+```{r, eval=FALSE}
 # plot some gene.
 plotGene("Stat1", "mm10")
 # add some data.
@@ -123,6 +122,14 @@ plotGene("Stat1", "mm10", add.data = list("Exo+" = f))
 plotGene("Stat1", "mm10", add.data = list("Exo+" = f), from = 52.12e6, to = 52.14e6)
 ```
 
+The above code may fail if the genome version at Biomart differs from the version expected by Gviz, the underlaying package used by plotGene. In that case, the biomart object mast be specified directly. In that case, the argument `genome` is ignored.
+
+```{r}
+library(biomaRt)
+mart <- useMart(biomart = "ensembl", dataset = "mmusculus_gene_ensembl")
+f <- system.file("files/example.bam", package = "q3tools")
+plotGene("Stat1", biomart = mart, add.data = list("Exo+" = f), from = 52.12e6, to = 52.14e6)
+```
 
 ## Ranges
 
