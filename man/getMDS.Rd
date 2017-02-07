@@ -18,4 +18,3 @@ Get plotting data from plotMDS() in the limma package
 \examples{
 NULL
 }
-

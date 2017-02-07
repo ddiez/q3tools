@@ -29,4 +29,3 @@ Create a matrix with several objects resulting from enrichment analysis with keg
 \examples{
 NULL
 }
-

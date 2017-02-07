@@ -31,4 +31,3 @@ By default MNAR missing values are assigned 0. MAR values are imputed with some 
 \examples{
 NULL
 }
-

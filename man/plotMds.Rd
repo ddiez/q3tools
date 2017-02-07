@@ -17,4 +17,3 @@ ggplo2-style MDS plot using plotMDS() in the limma package to get the data.
 \examples{
 NULL
 }
-

@@ -23,4 +23,3 @@ appropriate arguments.
 \examples{
 NULL
 }
-

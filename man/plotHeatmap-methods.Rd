@@ -3,10 +3,10 @@
 \docType{methods}
 \name{plotHeatmap}
 \alias{plotHeatmap}
-\alias{plotHeatmap,DGEList-method}
-\alias{plotHeatmap,EList-method}
-\alias{plotHeatmap,ExpressionSet-method}
 \alias{plotHeatmap,matrix-method}
+\alias{plotHeatmap,ExpressionSet-method}
+\alias{plotHeatmap,EList-method}
+\alias{plotHeatmap,DGEList-method}
 \title{Plots a heatmap of a matrix}
 \usage{
 plotHeatmap(x, row.cluster = TRUE, col.cluster = FALSE, scale = FALSE)
@@ -41,4 +41,3 @@ Plots a heatmap with row and/or col clustering if specifief.
 \examples{
 NULL
 }
-

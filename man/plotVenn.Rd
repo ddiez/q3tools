@@ -19,4 +19,3 @@ Plot a venn diagram with VennDiagram package using some nice defaults
 \examples{
 NULL
 }
-

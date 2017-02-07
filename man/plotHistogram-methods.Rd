@@ -3,10 +3,10 @@
 \docType{methods}
 \name{plotHistogram}
 \alias{plotHistogram}
-\alias{plotHistogram,DGEList-method}
-\alias{plotHistogram,EList-method}
-\alias{plotHistogram,ExpressionSet-method}
 \alias{plotHistogram,matrix-method}
+\alias{plotHistogram,ExpressionSet-method}
+\alias{plotHistogram,EList-method}
+\alias{plotHistogram,DGEList-method}
 \title{Plot a hisogram of values.}
 \usage{
 plotHistogram(x, group = NULL)
@@ -30,4 +30,3 @@ Plot a histogram, maybe with facets as a function of some grouping variable.
 \examples{
 NULL
 }
-

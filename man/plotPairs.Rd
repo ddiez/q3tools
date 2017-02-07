@@ -23,4 +23,3 @@ Inspired by GGally::ggpairs, but aimed to be simpler.
 \examples{
 NULL
 }
-

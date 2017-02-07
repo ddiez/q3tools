@@ -28,4 +28,3 @@ Plot a heatmap with the significance of terms from enrichment results.
 \examples{
 NULL
 }
-

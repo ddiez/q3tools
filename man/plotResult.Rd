@@ -16,4 +16,3 @@ columns are the coefficients and the rows are the genes.
 \examples{
 NULL
 }
-

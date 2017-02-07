@@ -3,8 +3,8 @@
 \docType{methods}
 \name{plotRanges}
 \alias{plotRanges}
-\alias{plotRanges,GRanges-method}
 \alias{plotRanges,IRanges-method}
+\alias{plotRanges,GRanges-method}
 \title{Plot ranges avoiding overlapping}
 \usage{
 plotRanges(x, sep = 0.5, ...)
@@ -30,4 +30,3 @@ but using ggplot2 graphics instead.
 \examples{
 NULL
 }
-

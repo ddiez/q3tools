@@ -11,4 +11,3 @@ life easier when analyzing omics data. But they are not neccesarily the best
 way to do things. Indeed, I expect them to contain many errors, bad choices
 and limitations. You have been warned.
 }
-

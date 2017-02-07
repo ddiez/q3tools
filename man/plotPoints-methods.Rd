@@ -3,10 +3,11 @@
 \docType{methods}
 \name{plotPoints}
 \alias{plotPoints}
-\alias{plotPoints,DGEList-method}
-\alias{plotPoints,EList-method}
+\alias{plotPoints,matrix-method}
 \alias{plotPoints,ExpressionSet-method}
 \alias{plotPoints,matrix-method}
+\alias{plotPoints,EList-method}
+\alias{plotPoints,DGEList-method}
 \title{Plot jittered points by group from a matrix.}
 \usage{
 plotPoints(x, group = NULL, label = NULL, scales = "fixed")
@@ -46,4 +47,3 @@ scale argument (e.g. changed to 'free_y').
 \examples{
 NULL
 }
-

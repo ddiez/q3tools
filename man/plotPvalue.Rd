@@ -15,4 +15,3 @@ Plot distribution of p-values by group.
 \examples{
 NULL
 }
-

@@ -16,4 +16,3 @@ when called with save.plot = TRUE.
 \examples{
 NULL
 }
-
