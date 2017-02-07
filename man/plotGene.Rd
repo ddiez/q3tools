@@ -5,7 +5,7 @@
 \title{Basic gene ploting function}
 \usage{
 plotGene(symbol, genome, add.ideogram = FALSE, add.data = NULL,
-  from = NULL, to = NULL, ...)
+  from = NULL, to = NULL, biomart = NULL, ...)
 }
 \arguments{
 \item{symbol}{symbol of the gene to plot. Will be used to search using BiomartGeneRegionTrack.}
@@ -20,6 +20,8 @@ plotGene(symbol, genome, add.ideogram = FALSE, add.data = NULL,
 
 \item{to}{end genomic coordinates.}
 
+\item{biomart}{mart object (optional).}
+
 \item{...}{further arguments passed to plotTracks.}
 }
 \value{
@@ -31,4 +33,3 @@ Plots a gene from a specified assembly using Gviz package. Optionaly plots some 
 \examples{
 NULL
 }
-
