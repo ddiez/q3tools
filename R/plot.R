@@ -249,7 +249,7 @@ plotGene <- function(symbol, genome, add.ideogram = FALSE, add.data = NULL, from
   if (!is.null(add.data)) {
 
     if (!is.list(add.data))
-      add.data <- list(add.data)
+      add.data <- as.list(add.data)
 
     if (is.null(names(add.data)))
       names(add.data) <- paste0("DataTrack-", seq_len(length(add.data)))
