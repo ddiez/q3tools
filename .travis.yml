@@ -7,3 +7,6 @@ r_packages:
 
 after_success:
   - Rscript -e 'covr::codecov()'
+
+before_install:
+  Rscript -e 'update.packages(ask = FALSE)'
