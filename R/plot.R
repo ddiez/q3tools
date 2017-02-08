@@ -210,6 +210,7 @@ plotCorrelation <- function(x, title = "Sample correlation", cluster = FALSE) {
 #' @param from start genomic coordinates.
 #' @param to end genomic coordinates.
 #' @param biomart mart object (optional).
+#' @param ylim sets the limits for y-axis (default: NULL).
 #' @param ... further arguments passed to plotTracks.
 #'
 #' @return nothing but produces a plot as side effect.
@@ -217,7 +218,7 @@ plotCorrelation <- function(x, title = "Sample correlation", cluster = FALSE) {
 #'
 #' @examples
 #' NULL
-plotGene <- function(symbol, genome, add.ideogram = FALSE, add.data = NULL, from = NULL, to = NULL, biomart = NULL, ...) {
+plotGene <- function(symbol, genome, add.ideogram = FALSE, add.data = NULL, from = NULL, to = NULL, biomart = NULL, ylim = NULL, ...) {
   itrack <- NULL
   if (add.ideogram)
     itrack <- IdeogramTrack(genome = genome)
@@ -259,6 +260,7 @@ plotGene <- function(symbol, genome, add.ideogram = FALSE, add.data = NULL, from
       DataTrack(x,
                 name = n,
                 type = "histogram",
+                ylim = ylim,
                 col.histogram = "cornflowerblue",
                 fill.histogram = "cornflowerblue",
                 col.title = "black",
