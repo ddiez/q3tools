@@ -264,6 +264,7 @@ plotGene <- function(symbol, genome, add.ideogram = FALSE, add.data = NULL, from
                 col.histogram = "cornflowerblue",
                 fill.histogram = "cornflowerblue",
                 col.title = "black",
+                col.axis = "black",
                 background.title = "white")
     })
 
