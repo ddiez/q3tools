@@ -15,7 +15,7 @@ install:
 build_script:
   - travis-tool.sh install_deps
   - travis-tool.sh install_bioc_deps
-  - travis-tool.sh install_bioc BiocGenerics S4Vectors XVector GenomeInfoDb Biostrings XML AnnotationDbi Rsamtools #zlibbioc
+  - travis-tool.sh install_bioc BiocGenerics S4Vectors XVector GenomeInfoDb Biostrings XML AnnotationDbi Rsamtools matrixStats #zlibbioc
 
 test_script:
   - travis-tool.sh run_tests
