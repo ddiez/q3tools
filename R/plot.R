@@ -113,9 +113,9 @@ plotVenn <- function(x, add.universe = FALSE, ...) {
   m2l <- function(x, add.universe = FALSE) {
     l <- lapply(seq_len(ncol(x)), function(i) {
       if (is.null(rownames(x)))
-        (1:nrow(x))[x[,i]]
+        (1:nrow(x))[x[,i] != 0]
       else
-        rownames(x)[x[,i]]
+        rownames(x)[x[,i] != 0]
     })
     if (is.null(colnames(x)))
       names(l) <- paste0("group-", 1:length(l))
