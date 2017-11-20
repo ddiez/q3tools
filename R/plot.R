@@ -153,7 +153,7 @@ plotVenn <- function(x, add.universe = FALSE, ...) {
 #' @examples
 #' NULL
 plotMds <- function(x, group = NULL) {
-  x <- getMDS(x)
+  x <- get_mds(x)
 
   d <- data.frame(x = x$x, y = x$y, sample = names(x$x))
   d$group <- group

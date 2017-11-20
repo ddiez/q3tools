@@ -7,7 +7,7 @@
 plotMds(x, group = NULL)
 }
 \arguments{
-\item{x}{an object from which a data matrix can be obtained.}
+\item{x}{a matrix object.}
 
 \item{group}{grouping variable.}
 }

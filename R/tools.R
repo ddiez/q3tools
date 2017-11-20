@@ -87,7 +87,7 @@ imputeGroup <- function(x, group = NULL, do.mar = TRUE, do.mnar = TRUE, mnar.def
 }
 
 
-#' getMDS
+#' get_mds
 #'
 #' Get plotting data from plotMDS() in the limma package
 #'
@@ -98,6 +98,6 @@ imputeGroup <- function(x, group = NULL, do.mar = TRUE, do.mnar = TRUE, mnar.def
 #'
 #' @examples
 #' NULL
-getMDS <- function(...){
+get_mds <- function(...){
   limma::plotMDS(..., plot = FALSE)
 }
