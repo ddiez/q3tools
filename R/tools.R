@@ -99,10 +99,5 @@ imputeGroup <- function(x, group = NULL, do.mar = TRUE, do.mnar = TRUE, mnar.def
 #' @examples
 #' NULL
 getMDS <- function(...){
-  ff <- tempfile()
-  png(filename=ff)
-  res <- limma::plotMDS(...)
-  dev.off()
-  unlink(ff)
-  res
+  limma::plotMDS(..., plot = FALSE)
 }
