@@ -57,8 +57,8 @@ plotResult <- function(x) {
 #' @examples
 #' NULL
 plotPvalue <- function(x) {
-  d <- melt(x$p.pvalue, varnames = c("protein", "coefficient"))
-  ggplot(d, aes_string(x = "value")) + geom_histogram(bins = 25) + facet_wrap(~coefficient) + labs(title = "Distribution of p-value") + theme(aspect.ratio = 1)
+  d <- melt(x$p.value)
+  ggplot(d, aes_string(x = "value")) + geom_histogram(bins = 25) + facet_wrap("variable") + labs(title = "Distribution of p-value")
 }
 
 #' plotEnrichment
