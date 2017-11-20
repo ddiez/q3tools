@@ -153,7 +153,7 @@ plotVenn <- function(x, add.universe = FALSE, ...) {
 #' @examples
 #' NULL
 plotMds <- function(x, group = NULL) {
-  if(class(x) == "RangedSummarizedExperiment")
+  if(inherits(x, "SummarizedExperiment"))
     x <- SummarizedExperiment::assay(x)
 
   x <- getMDS(x)
