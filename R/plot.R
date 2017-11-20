@@ -144,7 +144,7 @@ plotVenn <- function(x, add.universe = FALSE, ...) {
 #'
 #' ggplo2-style MDS plot using plotMDS() in the limma package to get the data.
 #'
-#' @param x an object from which a data matrix can be obtained.
+#' @param x a matrix object.
 #' @param group grouping variable.
 #'
 #' @return NULL
@@ -153,14 +153,11 @@ plotVenn <- function(x, add.universe = FALSE, ...) {
 #' @examples
 #' NULL
 plotMds <- function(x, group = NULL) {
-  if(inherits(x, "SummarizedExperiment"))
-    x <- SummarizedExperiment::assay(x)
-
   x <- getMDS(x)
 
   d <- data.frame(x = x$x, y = x$y, sample = names(x$x))
   d$group <- group
-  d$index <- as.character(1:nrow(d))
+  d$index <- as.character(seq_len(nrow(d)))
 
   g <- ggplot(d, aes_string(x = "x", y = "y")) +
     theme(aspect.ratio = 1) +
