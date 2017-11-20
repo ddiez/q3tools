@@ -12,6 +12,7 @@
 #' @importFrom grid grid.newpage grid.draw unit textGrob
 #' @importFrom Gviz IdeogramTrack GenomeAxisTrack BiomartGeneRegionTrack DataTrack plotTracks chromosome
 #' @importFrom edgeR cpm
+#' @importFrom limma plotMDS
 #' @importFrom Biobase exprs pData fData sampleNames
 #' @importFrom stats as.dist cor hclust
 #' @importFrom reshape2 melt
