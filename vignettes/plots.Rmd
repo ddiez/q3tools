@@ -18,6 +18,7 @@ Required packages for building this vignette:
 ```{r setup, message=FALSE}
 knitr::opts_chunk$set(fig.width=5, fig.height=5)
 library(q3tools)
+library(dplyr)
 library(Biobase)
 library(IRanges)
 library(GenomicRanges)
