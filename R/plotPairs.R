@@ -40,7 +40,7 @@ plotPairs <- function(x, geom.low = "point", geom.mid = "histogram", geom.up = "
     gtable_filter(g, "panel")
   })
 
-  gmatrix <- matrix(glist, nrow = n, ncol = n)
+  gmatrix <- matrix(glist, nrow = n, ncol = n, byrow = TRUE)
 
   gt <- gtable_matrix("ggpairs", gmatrix, unit(rep(1, n), "null"), unit(rep(1, n), "null"))
 
