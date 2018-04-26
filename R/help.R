@@ -8,7 +8,9 @@
 #' @name q3tools
 #' @docType package
 #'
-#' @import ggplot2 dplyr tidyr tibble gtable
+#' @import tibble gtable
+#' @rawNamespace import(ggplot2, except = "exprs")
+#' @importFrom dplyr %>% filter_ group_by_ summarize_ select
 #' @importFrom grid grid.newpage grid.draw unit textGrob
 #' @importFrom Gviz IdeogramTrack GenomeAxisTrack BiomartGeneRegionTrack DataTrack plotTracks chromosome
 #' @importFrom edgeR cpm
