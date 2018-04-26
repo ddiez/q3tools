@@ -22,10 +22,19 @@ plotPairs <- function(x, geom.low = "point", geom.mid = "histogram", geom.up = "
     z <- comp_matrix[k, ]
     type <- levels(factor(sign(z[1] - z[2])))
 
+    to_function <- function(e) {
+      f <- paste0("geom_", e, "()")
+      eval(parse(text = f))
+    }
+
+    geom_low <- to_function(geom.low)
+    geom_mid <- to_function(geom.mid)
+    geom_top <- to_function(geom.up)
+
     switch(type,
-       "0" = {g <- ggplotGrob(qplot(x[,z[1]], geom = geom.mid))},
-      "-1" = {g <- ggplotGrob(qplot(x[,z[1]], x[, z[2]], geom = geom.up))},
-       "1" = {g <- ggplotGrob(qplot(x[,z[1]], x[, z[2]], geom = geom.low))}
+       "0" = {g <- ggplotGrob(ggplot(mapping = aes(x[,z[1]])) + geom_mid)},
+      "-1" = {g <- ggplotGrob(ggplot(mapping = aes(x[,z[1]], x[, z[2]])) + geom_top)},
+       "1" = {g <- ggplotGrob(ggplot(mapping = aes(x[,z[1]], x[, z[2]])) + geom_low)}
     )
 
     gtable_filter(g, "panel")
